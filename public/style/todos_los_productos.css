@@ -85,6 +85,13 @@ section::-webkit-scrollbar {
     gap: 10px;
 }
 
+.container_info {
+    border-radius: 20px;
+    margin: 40px 0;
+    padding: 0 50px;
+    background: #9d75eb;
+}
+
 .descripcion {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -112,10 +119,32 @@ section::-webkit-scrollbar {
     gap: 20px;
 }
 
+.apps_btn1 {
+    font-size: 1.2vw;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #814de5;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.more_btn2 {
+    font-size: 1.2vw;
+    background: transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .informacion {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
 .informacion > h1 {

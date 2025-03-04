@@ -4,6 +4,9 @@ header {
     z-index: 100;
     height: calc(100vh - 20px);
     position: sticky;
+    background: #5c00b9;  /*diseño 2*/
+    margin: 10px;   /*diseño 2*/
+    border-radius: 20px;    /*diseño 2*/
     z-index: 100;
     top: 0;
 }
