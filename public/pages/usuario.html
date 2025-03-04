@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/public/js/usuario.js" defer></script>
+    <link rel="stylesheet" href="/public/style/usuario_style.css">
+    <link rel="icon" type="image/png" href="/public/img_usuario/logo_restaurante.ico">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <title>Recetapp</title>
+</head>
+<body x-data="{ category: 'entrada' }">
+
+    <!-- Navegacion -->
+    <main id="navegacion"></main>
+    <script src="/public/js/fetchAPI/Navegacion.js"></script>
+    <section>
+        <!--Todos los Productos -->
+        <main x-show="category === 'entrada'" id="todos_los_productos"></main>
+        <script src="/public/js/fetchAPI/TodosLosProductos.js"></script>
+        <!-- Categorias (recetas) -->
+        <main x-show="category === 'categoria'" id="categorias"></main>
+        <script src="/public/js/fetchAPI/categorias.js"></script>
+        <!-- Filtar recetas por categorias -->
+        <main x-show="category === 'cargarRecetas'" id="cargarRecetas"></main>
+        <script src="/public/js/fetchAPI/cargarRecetas.js"></script>
+        <!-- Añadir recetas -->
+        <main x-show="category === 'agregar_receta'" id="anadirRecetas"></main>
+        <script src="/public/js/fetchAPI/anadirReceta.js"></script>
+        <!-- USUARIO -->
+        <main x-show="category === 'usuario'" id="perfilUsuario"></main>
+        <script src="/public/js/fetchAPI/perfilUsuario.js"></script>
+    </section>
+</body>
+</html>

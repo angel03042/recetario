@@ -1,0 +1,47 @@
+/* Categorias */
+
+/* .categorias {
+    display: none;
+} */
+
+.categorias > h1 {
+    font-size: 4vw;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.tipos_categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 4fr));
+    grid-auto-rows: 200px;
+    gap: 50px;
+    color: white;
+    margin: 0 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tipos_categorias > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.tipos_categorias > div > img {
+    width: 20%;
+}
+
+.postres, .sopas, .platos_fuertes {
+    background-image: linear-gradient(to bottom, purple, rgb(81, 38, 97));
+}
+
+.bebidas, .ensaladas, .guarniciones {
+    background-image: linear-gradient(to bottom, rgb(245, 159, 93), rgb(109, 66, 2));
+}
+
+.aperitivos, .salsa {
+    background-image: linear-gradient(to bottom, rgb(3, 255, 99), rgb(40, 84, 55));
+}

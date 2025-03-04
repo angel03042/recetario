@@ -1,0 +1,193 @@
+/* .pag_usuario {
+    display: none;
+} */
+
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 30px;
+}
+
+.notification > img {
+    width: 15%;
+    cursor: pointer;
+}
+
+.perfil_usuario {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.perfil_usuario > div {
+    border-radius: 10px;
+}
+
+.receta_editar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 50px;
+    cursor: pointer;
+    align-items: center;
+    background-image: linear-gradient(to bottom, rgb(245, 159, 93), rgb(109, 66, 2));
+}
+
+.receta_editar > img {
+    width: 50%;
+}
+
+.editar_receta {
+    text-align: center;
+    font-size: clamp(.5rem, 4vw, 2rem);
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.datos_usuario {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    background-image: linear-gradient(to bottom,blue,rgb(2, 2, 69));
+    grid-column: 2/5;
+}
+
+.datos_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.datos_input > div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.datos_input > div > label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.usuario_editar, .password_editar {
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    font-size: 15px;
+}
+
+/* .datos_usuario > img {
+    width: 40%;
+} */
+
+.datos_informacion {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    justify-content: space-between;
+}
+
+.datos_informacion > div > p {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.datos_button {
+    display: flex;
+    gap: 20px;
+}
+
+.datos_button > button {
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.password {
+    position: relative;
+}
+
+.password > img {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    right: 10px;
+    cursor: pointer;
+}
+
+.datos_button > .btn1 {
+    background: black;
+    color: white;
+}
+
+.datos_button > .btn2 {
+    background: white;
+    color: black;
+    border: solid 2px black;
+}
+
+.reportar_bug {
+    font-size: clamp(.5rem, 4vw, 2rem);
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.reporte_error {
+    grid-column: 1/5;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.reporte_error > img {
+    width: 30%;
+}
+
+.reporte_contacto > form {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 10px;
+}
+
+.reporte_contacto > form > textarea {
+    resize: none;
+    padding: 10px;
+}
+
+.reporte_contacto > form > button {
+    background: black;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn_enviar {
+    width: 30px;
+}
+
+.receta_favoritos {
+    background-image: linear-gradient(to bottom, rgb(245, 159, 93), rgb(109, 66, 2));
+}
+
+.reporte_error {
+    background-image: linear-gradient(to bottom, rgb(3, 255, 99), rgb(40, 84, 55));
+}

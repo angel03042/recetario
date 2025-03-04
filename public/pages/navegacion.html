@@ -1,0 +1,20 @@
+<header>
+    <div class="usuario">
+        <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
+    </div>
+    <nav>
+        <div class="menu_todas_recetas">
+            <img @click="category = 'entrada'" id="pages" class="recetas_todas" src="/public/img/notebook-tabs.png" alt="">
+            <img @click="category = 'categoria'" id="pages" class="receta_categorias" src="/public/img/bring-to-front.png" alt="">
+        </div>
+        <img @click="category = 'agregar_receta'" id="pages" class="recetas_agregar" src="/public/img/diamond-plus (1).png" alt="">
+    </nav>
+</header>
+<nav class="menu_movil">
+    <div class="menu_navegacion_movil">
+        <img @click="category = 'entrada'" class="recetas_todas" id="todas_recetas" src="/public/img/notebook-tabs.png" alt="">
+        <img @click="category = 'categoria'" class="receta_categorias" src="/public/img/bring-to-front.png" alt="">
+        <img @click="category = 'agregar_receta'" class="recetas_agregar" src="/public/img/diamond-plus (1).png" alt="">
+        <img @click="category = 'usuario'" class="cerrarSesion usuario_perfil" src="/public/img/user-round.png" alt="">
+    </div>
+</nav>

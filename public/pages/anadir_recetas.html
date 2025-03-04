@@ -1,0 +1,64 @@
+<article class="anadir_recetas">
+    <div class="anadir_button">
+        <h1>Receta</h1>
+        <div>
+            <div>
+                <input type="file" name="file" id="filePDF" style="display: none;">
+                <button class="btn1" id="button1">Subir Archivo<img class="btn_img" src="/public/img/note (1).gif" alt=""></button>
+            </div>
+            <button id="anadir_receta" class="btn2">Añadir<img class="btn_img" src="/public/img/Submited.gif" alt=""></button>
+        </div>
+    </div>
+    <p id="verificar_campos" style="color: red; display: none;">Rellene los campos</p>
+    <p id="receta_existente" style="color: green; display: none;">La receta ya existe</p>
+    <div class="agregar_recetas">
+        <div>
+            <div id="img_cargada" class="cargar_img">
+                <p>No se eligio ningun archivo !</p>
+            </div>
+            <div class="button_img">
+                <input type="file" id="input_imagen" style="display: none;">
+                <button id="cargar_img" class="subir_img" type="">Cargar img<img src="/public/img/upload.svg" alt=""></button>
+            </div>
+            <div class="input_ingredientes">
+                <p>Ingredientes</p>
+                <textarea id="ingrediente_receta" name="" id="" rows="12"></textarea>
+            </div>
+        </div>
+        <div>
+            <div class="input_receta_title">
+                <p>Nombre de la Receta</p>
+                <input id="nombre_receta" type="text" id="text">
+            </div>
+            <div class="input_receta_categoria">
+                <p>Categoria</p>
+                <input id="receta_categoria" type="text" readonly>
+                <div class="sub_menu_categorias" style="display: none;">
+                    <li class="li1">Postres</li>
+                    <li>Bebidas</li>
+                    <li>Entradas y Aperitivos</li>
+                    <li>Sopas y Cremas</li>
+                    <li>Ensaladas</li>
+                    <li>Salsa y Aderezos</li>
+                    <li>Platos Fuertes</li>
+                    <li class="li2">Guarniciones</li>
+                </div>
+            </div>
+            <div class="input_descripcion">
+                <p>Descripcion</p>
+                <textarea id="descripcion_receta" name="" id="" rows="5" placeholder="Minimo 30 caracteres."></textarea>
+            </div>
+            <div class="input_instrucciones">
+                <p>Instrucciones</p>
+                <textarea id="instrucciones_receta" name="" id="" rows="12"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="container_agregado_receta" class="verificacion">
+        <div class="file_verificados">
+            <img src="/public/img/PrimeVerified.png" alt="">
+            <p>Anadido Exitosamente</p>
+            <button id="receta_exitosa">Aceptar</button>
+        </div>
+    </div>
+</article>

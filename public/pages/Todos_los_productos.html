@@ -1,0 +1,46 @@
+<article class="container_todas_las_recetas">
+    <div class="navegacion">
+        <div class="perfil">
+            <button @click="category = 'usuario'" class="usuario_perfil">
+                <img src="/public/img/Female Avatar (1).gif" alt="">
+                <p>Angel B</p>
+            </button>
+            <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
+        </div>
+        <div class="search">
+            <img src="/public/img/search.png" alt="">
+            <input type="text" name="text" placeholder="Buscar">
+        </div>
+        <div class="notification">
+            <img src="/public/img/notification.gif" alt="">
+            <button class="salir" id="cerrar_sesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
+        </div>
+        <img src="/public/img/log-out.png" alt="">
+    </div>
+    <article class="contenedor">
+        <div x-data="{ info: 'apps' }" class="container_info">
+            <article x-show="info === 'apps'" class="descripcion">
+                <div class="informacion">
+                    <h1>Recetas Populares</h1>
+                    <p>Los mejores sabores están aquí para deleitar tus sentidos. Nuestra "Apps" ofrece una gran variedad de funciones para almacenar sus recetas de una manera segura y confiable.</p>
+                </div>
+                <img src="/public/img/chef2.png" alt="">
+            </article>
+        </div>
+        <!-- Recetas -->
+        <div class="container_recetas">
+            
+        </div>
+        <!-- Cerrar sesion -->
+        <div class="cerrar_sesion">
+            <div>
+                <p>Confirmar</p>
+                <img src="/public/img/MaterialSymbolsLightTapas.png" alt="">
+                <div class="button_cerrar_sesion">
+                    <button id="salir" class="btn1">Salir</button>
+                    <button id="mantener" class="btn2">Mantener</button>
+                </div>
+            </div>
+        </div>
+    </article>
+</article>

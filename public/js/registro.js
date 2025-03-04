@@ -1,0 +1,62 @@
+document.querySelector('#registrar').addEventListener('click', (event)=>{
+    event.preventDefault();
+
+    const verificacionDatos = {
+        verificaionUsuario: 8,
+        verificaionEmail : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        verificaionPassword : 6
+    }
+
+    const usuarioRegistro = document.querySelector('#usuario_registro').value;
+    const email = document.querySelector('#correo').value;
+    const passwordRegistro = document.querySelector('#password_registro').value;
+    const confirmarPassword = document.querySelector('#confirmar_password_registro').value;
+
+    const alertUsuario = document.querySelector('#alertUsuario');
+    const alertEmail = document.querySelector('#alertEmail');
+    const alertPassword = document.querySelector('#alertPassword');
+    const alertPasswordConfirmar = document.querySelector('#alertPasswordConfirmar');
+
+    const pagesRegistro = document.querySelector('#registroUsuario');
+    const pagesDatosEnviados = document.querySelector('#datosEnviados');
+
+    let labelRegistro = document.querySelectorAll('#labels_registro');
+
+    if(usuarioRegistro === '' && 
+        email === '' && 
+        passwordRegistro === '' &&
+        confirmarPassword === '') {
+        labelRegistro.forEach(colors => {
+            colors.style.color = 'red';
+        })
+    }else {
+        labelRegistro.forEach(colors => {
+            colors.style.color = '';
+        })
+        if(usuarioRegistro.length < verificacionDatos.verificaionUsuario){
+            alertUsuario.style.display = 'block';
+        }else{
+            alertUsuario.style.display = 'none';
+            if(!verificacionDatos.verificaionEmail.test(email)){
+                alertEmail.style.display = 'block';
+            }else{
+                alertEmail.style.display = 'none';
+                if(passwordRegistro.length < verificacionDatos.verificaionPassword){
+                    alertPassword.style.display = 'block';
+                }else {
+                    alertPassword.style.display = 'none'
+                    if(passwordRegistro === confirmarPassword){
+                        alertPasswordConfirmar.style.display = 'none';
+                        // ✅ CAMBIO AQUÍ: Usar Alpine.store()
+                        Alpine.store('app').button = 'datos_verificacion';
+                        console.log(Alpine.store('app').button); // Agrega esto
+                    }else {
+                        alertPasswordConfirmar.style.display = 'block'
+                    }
+                }
+            }
+        }
+    }
+})
+
+

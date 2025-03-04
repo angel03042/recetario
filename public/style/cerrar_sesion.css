@@ -1,0 +1,48 @@
+/* cerrar sesion */
+
+.cerrar_sesion {
+    z-index: 99;
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* ocultar and mostrar */
+    display: none;
+}
+
+.cerrar_sesion > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 50px;
+    border-radius: 20px;
+    background: black;
+    box-shadow: 0 0 10px black;
+}
+
+.cerrar_sesion > div > p {
+    font-size: 2vw;
+}
+
+.cerrar_sesion > div > img {
+    width: 100px;
+}
+
+.button_cerrar_sesion {
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.button_cerrar_sesion > .btn1, .btn2 {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* .button_cerrar_sesion > .btn1, .btn2 > img {
+    width: 50px;
+} */
