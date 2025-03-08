@@ -12,7 +12,6 @@
             <input type="text" name="text" placeholder="Buscar">
         </div>
         <div class="notification">
-            <img class="notifi" src="/public/img/notification.gif" alt="">
             <button class="salir" id="cerrar_sesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
         </div>
         <img src="/public/img/log-out.png" alt="">
@@ -29,21 +28,24 @@
                     <div class="datos_input">
                         <div>
                             <label for="">Usuario</label>
-                            <input class="usuario_editar" type="text">
+                            <input class="usuario_editar" type="text" readonly>
                         </div>
                         <div>
                             <label for="">Password</label>
                             <div class="password">
-                                <input id="passwordEditar" class="password_editar" type="password">
+                                <input id="passwordEditar" class="password_editar" type="password" readonly>
                                 <img id="ocultar" src="/public/img/eye-closed.png" alt="">
                                 <img id="mostrar" src="/public/img/eye.png" alt="" style="display: none;">
                             </div>
                         </div>
                     </div>
                 </div>
+                <p id="alert2" class="alert2">Editar los campos, antes de actulizar los datos</p>
+                <p id="alert" class="alert" >Se notificara a su correo para hacer la actualizacion.</p>
                 <div class="datos_button">
-                    <button class="btn1">Actualizar datos</button>
-                    <button class="btn2">Borrar cuenta</button>
+                    <button id="actualizar_datos" class="btn1">Actualizar datos</button>
+                    <button id="delete_cuenta" class="btn2">Borrar cuenta</button>
+                    <img id="editar_datos" class="editar" src="/public/img/square-pen.png" alt="">
                 </div>
             </div>
             <img src="/public/img/Register.gif" alt="">

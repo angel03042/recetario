@@ -1,4 +1,14 @@
-document.querySelector('#registrar').addEventListener('click', (event)=>{
+document.addEventListener("alpine:init", () => {
+    Alpine.store("estado", {
+        button: "login" // Estado inicial
+    });
+});
+
+const buttonRegistrar = document.querySelector('#registrar');
+const clearInputs = document.querySelectorAll('.inputsClear');
+
+
+buttonRegistrar.addEventListener('click', (event)=>{
     event.preventDefault();
 
     const verificacionDatos = {
@@ -48,8 +58,10 @@ document.querySelector('#registrar').addEventListener('click', (event)=>{
                     if(passwordRegistro === confirmarPassword){
                         alertPasswordConfirmar.style.display = 'none';
                         // ✅ CAMBIO AQUÍ: Usar Alpine.store()
-                        Alpine.store('app').button = 'datos_verificacion';
-                        console.log(Alpine.store('app').button); // Agrega esto
+                        clearInputs.forEach(limpiar =>{
+                            limpiar.value = '';
+                        })
+                        Alpine.store("estado").button = "datos_verificacion";
                     }else {
                         alertPasswordConfirmar.style.display = 'block'
                     }

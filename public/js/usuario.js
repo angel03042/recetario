@@ -6,20 +6,44 @@ function inicializarFunciones() {
     document.querySelector('.usuario_editar').value = usuario;
     document.querySelector('.password_editar').value = password;
 
-    // Pages
-    const todosProductos = document.querySelectorAll('#pages')
-
-    todosProductos.forEach(mostrar => {
-        mostrar.addEventListener('click',()=> {
-            mostrar.style.borderLeft = '2px solid white'
-        })
-    })
-
     // mostrar password
+    const alertActualizarDatos = document.querySelector('#alert');
+    const alertEditarCampos = document.querySelector('#alert2');
+    const buttonActualizarDatos = document.querySelector('#actualizar_datos');
+    const buttonEditarDatos = document.querySelector('#editar_datos');
+    const usuario_editar = document.querySelector('.usuario_editar');
     const passwordOculto = document.getElementById('passwordEditar');
     const ocultarPassword = document.querySelector('#ocultar');
     const mostrarPassword = document.querySelector('#mostrar');
 
+    //Button para editar los datos del usuario
+    buttonEditarDatos.addEventListener('click',()=>{
+        usuario_editar.removeAttribute('readonly');
+        passwordOculto.removeAttribute('readonly');
+        usuario_editar.style.border = '3px solid green';
+        passwordOculto.style.border = '3px solid green'
+    });
+
+    buttonActualizarDatos.addEventListener('click',()=>{
+        if(usuario_editar.hasAttribute('readonly') && passwordOculto.hasAttribute('readonly')){
+            alertEditarCampos.style.display = 'block';
+
+            setTimeout(()=> {
+                alertEditarCampos.style.display = 'none'
+            }, 5000);
+        }else {
+            alertActualizarDatos.style.display = 'block';
+
+            setTimeout(()=>{
+                alertActualizarDatos.style.display = 'none';
+            }, 5000);
+
+            usuario_editar.setAttribute('readonly', '');
+            passwordOculto.setAttribute('readonly', '');
+            usuario_editar.style.border = 'none';
+            passwordOculto.style.border = 'none';
+        }
+    })
     
     //Button para navegar en la pagina (menu)
     const buttonCargarImagen = document.querySelector('#cargar_img');
@@ -36,7 +60,7 @@ function inicializarFunciones() {
 
     //Button para cerrar sesion
 
-    const buttonCerrarSesion = document.querySelectorAll(".cerrar_salirSesion");
+    const buttonCerrarSesion = document.querySelectorAll("#cerrar_salirSesion");
     //confirmar
     const cerrarSesion = document.querySelector(".cerrar_sesion");
     //Button (salir o mantener)
@@ -183,6 +207,9 @@ function inicializarFunciones() {
                 informacionReceta.appendChild(titulo)
                 informacionReceta.appendChild(descripcion);
                 containerRecetas.appendChild(recetasUsuario);
+
+                //Anadir recetas a su respectiva categoria
+                let categorias = ['Postres','Bebidas','Entradas y Aperitivos','Sopas y Cremas','Ensaladas','Salsa y Aderezos','Platos Fuertes','Guarniciones'];
     
                 // Limpiar los campos
                 imagenCargada.style.border = '';

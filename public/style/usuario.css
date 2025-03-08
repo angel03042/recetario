@@ -9,9 +9,70 @@
     gap: 30px;
 }
 
-.notification > img {
-    width: 15%;
+.notifi {
+    width: 20%;
     cursor: pointer;
+}
+
+/* Notificaciones */
+
+.mensaje_container {
+    position: relative;
+}
+
+summary {
+    list-style: none;
+}
+
+.conatainer_mensaje {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 250%;
+    background: #130038;
+    border-radius: 10px;
+    padding: 10px;
+    right: 100%;
+    border: 2px solid #1d0151;
+    box-shadow: 5px 5px 0 rgb(58, 0, 128);
+    gap: 10px;
+}
+
+.conatainer_mensaje > div {
+    display: flex;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px;
+    background: #1a004d;
+    gap: 20px;
+}
+
+.noti_descripcion {
+    display: flex;
+    flex-direction: column;
+}
+
+.title_noti {
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.noti_descripcion > p {
+    margin: 1px;
+}
+
+.mensaje {
+    color: white;
+    font-size: 1.01vw;
+}
+
+.conatainer_mensaje > div > img {
+    width: 10%;
+}
+
+.conatainer_mensaje > div:hover {
+    background: #774ccc;
 }
 
 .perfil_usuario {
@@ -53,8 +114,8 @@
 .datos_usuario {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
-    background-image: linear-gradient(to bottom,blue,rgb(2, 2, 69));
+    padding: 20px 40px;
+    background-image: linear-gradient(to bottom,#814de5,#9d75eb);
     grid-column: 2/5;
 }
 
@@ -86,14 +147,13 @@
     font-size: 15px;
 }
 
-/* .datos_usuario > img {
-    width: 40%;
-} */
+.datos_usuario > img {
+    width: 30%;
+}
 
 .datos_informacion {
     display: flex;
     flex-direction: column;
-    padding: 20px 40px;
     justify-content: space-between;
 }
 
@@ -104,9 +164,26 @@
     margin: 0;
 }
 
+.alert {
+    display: none;
+    color: greenyellow;
+    font-weight: 600;
+}
+
+.alert2 {
+    display: none;
+    color: rgb(255, 0, 0);
+    font-weight: 400;
+}
+
 .datos_button {
     display: flex;
+    align-items: center;
     gap: 20px;
+}
+
+.editar {
+    cursor: pointer;
 }
 
 .datos_button > button {

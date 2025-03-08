@@ -1,4 +1,4 @@
-header {
+.header_usuario {
     display: grid;
     grid-template-rows: 20% 80%;
     z-index: 100;
@@ -11,21 +11,11 @@ header {
     top: 0;
 }
 
-nav {
+.nav_usuario {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-nav > img {
-    width: 90px;
-    padding: 0 30px;
-    cursor: pointer;
-
-    &:hover {
-        scale: 1.1;
-    }
 }
 
 .usuario {
@@ -47,12 +37,15 @@ nav > img {
 }
 
 .menu_todas_recetas > img,
-.menu_anadir_recetas > img {
+.menu_anadir_recetas > img,
+.nav_usuario > img  {
     cursor: pointer;
-    padding: 0 30px;
-    width: 90px;
+    padding: 10px;
+    width: 50px;
 
     &:hover {
         scale: 1.1;
+        background: #9d75eb;
+        border-radius: 10px;
     }
 }
