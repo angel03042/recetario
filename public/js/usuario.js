@@ -164,6 +164,7 @@ function inicializarFunciones() {
         const recetaAgregadaButton = document.querySelector('#receta_exitosa');
         const containerRecetaAgregado = document.querySelector('#container_agregado_receta');
         const verificarCamposReceta = document.querySelector('#verificar_campos');
+        const verificarDescripcion = document.querySelector('#Descripcion_letras');
         
         if (nombreReceta.value.trim() === '' || 
             descripcionReceta.value.trim() === '' || 
@@ -172,7 +173,12 @@ function inicializarFunciones() {
             recetaCategoria.value.trim() === '') {
             
             verificarCamposReceta.style.display = 'block';
+        } else if(descripcionReceta.value.length > 100) {
+            verificarDescripcion.style.display = 'block';
+            descripcionReceta.style.border = '2px solid red'
         } else {
+            verificarDescripcion.style.display = 'none';
+            descripcionReceta.style.border = ''
             verificarCamposReceta.style.display = 'none';
             containerRecetaAgregado.style.display = 'block';
     
