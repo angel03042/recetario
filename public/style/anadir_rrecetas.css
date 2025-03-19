@@ -21,24 +21,11 @@
     gap: 10px;
 }
 
-.anadir_button > div > div > .btn1 {
-    padding: 5px 25px;
-    border-radius: 10px;
-    border: solid 2px black;
-    cursor: pointer;
-    background: transparent;
-    font-size: clamp(.5rem, 2.5vw, 1rem);
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .btn_img {
     width: 30px;
 }
 
-.anadir_button > div > .btn2 {
+.anadir_button > .btn2 {
     padding: 5px 25px;
     border-radius: 10px;
     border: none;

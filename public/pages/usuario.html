@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/public/style/usuario_style.css">
     <link rel="icon" type="image/png" href="/public/img_usuario/logo_restaurante.ico">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="/public/js/fetchAPI/cargarContenido.js" defer></script>
     <title>Recetapp</title>
 </head>
 <body x-data="{ category: 'entrada' }">
@@ -40,7 +39,7 @@
                 <div class="perfil">
                     <button @click="category = 'usuario'" class="usuario_perfil">
                         <img src="/public/img/Female Avatar (1).gif" alt="">
-                        <p>Angel B</p>
+                        <p id="name_user"></p>
                     </button>
                     <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
                 </div>
@@ -168,13 +167,7 @@
         <article x-show="category === 'agregar_receta'" id="anadirRecetas" class="anadir_recetas">
             <div class="anadir_button">
                 <h1>Receta</h1>
-                <div>
-                    <div>
-                        <input type="file" name="file" id="filePDF" style="display: none;">
-                        <button class="btn1" id="button1">Subir Archivo<img class="btn_img" src="/public/img/note (1).gif" alt=""></button>
-                    </div>
-                    <button id="anadir_receta" class="btn2">Añadir<img class="btn_img" src="/public/img/Submited.gif" alt=""></button>
-                </div>
+                <button id="anadir_receta" class="btn2">Añadir<img class="btn_img" src="/public/img/Submited.gif" alt=""></button>
             </div>
             <p id="verificar_campos" style="color: red; display: none;">Rellene los campos</p>
             <p id="receta_existente" style="color: green; display: none;">La receta ya existe</p>
@@ -274,7 +267,7 @@
                             </div>
                         </div>
                         <p id="alert2" class="alert2">Editar los campos, antes de actulizar los datos</p>
-                        <p id="alert" class="alert" >Se notificara a su correo para hacer la actualizacion.</p>
+                        <p id="alert" class="alert" >En un momento, inicie sesion con su usuario nuevo</p>
                         <div class="datos_button">
                             <button id="actualizar_datos" class="btn1">Actualizar datos</button>
                             <button id="delete_cuenta" class="btn2">Borrar cuenta</button>
@@ -287,9 +280,9 @@
                     <div class="reporte_contacto">
                         <p class="reportar_bug">Reportar (Error o Problemas)</p>
                         <p>Has tenido algun problema con nuestra app, contactanos y pronto lo resolveremos.</p>
-                        <form action="">
-                            <textarea name="" id="" rows="12" required></textarea>
-                            <button><img class="btn_enviar" src="/public/img/Paper Plane.gif" alt=""></button>
+                        <form action="https://formspree.io/f/xldjdoyw" method="POST">
+                            <textarea name="message" id="" rows="12" required></textarea>
+                            <button type="submit"><img class="btn_enviar" src="/public/img/Paper Plane.gif" alt=""></button>
                         </form>
                     </div>
                     <img src="/public/img/error.png" alt="">

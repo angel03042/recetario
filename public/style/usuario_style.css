@@ -39,14 +39,14 @@ body {
         margin: 0;
         background: none;
     }
-    header {
+    .header_usuario {
         display: none;
     }
     /* menu flotante */
     .menu_movil {
         display: block;
         position: fixed;
-        background: black;
+        background: #5c00b9;
         box-shadow: 0 0 3px black;
         margin: 0 20px;
         padding: 20px 0;
@@ -75,6 +75,8 @@ body {
     /* section de todas las recetas */
     section {
         border-radius: 0;
+        margin: 0;
+        margin-top: 80px; /* Solo para ver la wed en movil (quitar) */
         padding: 10px;
     }
     .perfil > button {
@@ -135,11 +137,15 @@ body {
 
     /* AGREGAR RECETAS */
 
-    .anadir_button > div > .btn1,
+    .anadir_button > div > div > .btn1,
     .anadir_button > div > .btn2 {
         padding: 6px 12px;
     }
 
+    .agregar_recetas {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 
     /* USUARIO */
 
@@ -154,7 +160,26 @@ body {
     .descripcion_information {
         display: none;
     }
-    
+    .perfil_usuario {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .datos_usuario {
+        padding: 10px;
+    }
+    .datos_usuario > img {
+        display: none;
+    }
+    .datos_input {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .datos_button {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 

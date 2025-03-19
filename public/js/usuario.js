@@ -4,15 +4,21 @@ const password = localStorage.getItem("password");
 document.querySelector(".usuario_editar").value = usuario;
 document.querySelector(".password_editar").value = password;
 
-// mostrar password
+// Mostrar nombre de usuario en la pagina principal
+document.querySelector("#name_user").innerHTML = usuario;
+// Mensaje al actualizar datos usuario
 const alertActualizarDatos = document.querySelector("#alert");
 const alertEditarCampos = document.querySelector("#alert2");
+// Button editar usuario
 const buttonActualizarDatos = document.querySelector("#actualizar_datos");
+const buttonDeleteDatos = document.querySelector("#delete_cuenta");
+// Editar datos del usuario
 const buttonEditarDatos = document.querySelector("#editar_datos");
-const usuario_editar = document.querySelector(".usuario_editar");
-const passwordOculto = document.getElementById("passwordEditar");
 const ocultarPassword = document.querySelector("#ocultar");
 const mostrarPassword = document.querySelector("#mostrar");
+// input (info del usuario)
+const passwordOculto = document.getElementById("passwordEditar");
+const usuario_editar = document.querySelector(".usuario_editar");
 
 //Button para editar los datos del usuario
 buttonEditarDatos.addEventListener("click", () => {
@@ -31,12 +37,19 @@ buttonActualizarDatos.addEventListener("click", () => {
 
     setTimeout(() => {
       alertEditarCampos.style.display = "none";
-    }, 5000);
+    }, 2000);
   } else {
     alertActualizarDatos.style.display = "block";
+    //Obtener los valores de los input
+    const usuarioValor = usuario_editar.value;
+    const passwordValor = passwordOculto.value;
+    //Guardar los datos de los input en el localStore
+    localStorage.setItem("usuarioUpload", usuarioValor);
+    localStorage.setItem("passwordUpload", passwordValor);
 
     setTimeout(() => {
       alertActualizarDatos.style.display = "none";
+      window.location.href = '/index.html';
     }, 5000);
 
     usuario_editar.setAttribute("readonly", "");
@@ -45,6 +58,20 @@ buttonActualizarDatos.addEventListener("click", () => {
     passwordOculto.style.border = "none";
   }
 });
+
+// Event para borrar cuenta y informacion del usuario
+buttonDeleteDatos.addEventListener('click',()=> {
+  const confirmaciónDatos = confirm('Estas seguro de que deseas borrar los datos?')
+  
+  if(confirmaciónDatos){
+    localStorage.clear();
+    alert('Cache borrada con exito')
+    window.location.href = '/index.html'
+  }else{
+    alert('Operacion cancelada');
+  }
+ 
+})
 
 //Button para navegar en la pagina (menu)
 const buttonCargarImagen = document.querySelector("#cargar_img");
@@ -95,13 +122,6 @@ mostrarPassword.addEventListener("click", () => {
   passwordOculto.type = "password";
 });
 
-//Subir archivo PDF
-
-const filePDF = document.querySelector("#filePDF");
-
-document.querySelector("#button1").addEventListener("click", () => {
-  filePDF.click();
-});
 
 //Subir img de la receta
 
@@ -115,7 +135,7 @@ inputImagen.addEventListener("change", (event) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       imagenURL = e.target.result; // Guarda la imagen en la variable global
-
+      
       // Verificar si ya hay una imagen cargada y reemplazarla en lugar de agregar otra
       if (imagenCargada.querySelector("img")) {
         imagenCargada.querySelector("img").src = imagenURL;
@@ -124,6 +144,7 @@ inputImagen.addEventListener("change", (event) => {
         imgElement.src = imagenURL;
         imagenCargada.innerHTML = ""; // Asegurar que no haya imágenes previas
         imagenCargada.appendChild(imgElement);
+        
       }
 
       imagenCargada.style.border = "none";
@@ -149,8 +170,7 @@ subMenuCategoria.querySelectorAll("li").forEach((categoria) => {
 
 //Agregar receta al recetario
 
-anadirReceta.addEventListener("click", (event) => {
-  event.preventDefault();
+anadirReceta.addEventListener("click", () => {
 
   // Inputs de recetas
   const nombreReceta = document.querySelector("#nombre_receta");
@@ -191,8 +211,9 @@ anadirReceta.addEventListener("click", (event) => {
         //contenedor de todas las recetas
         const containerRecetas = document.querySelector(".container_recetas");
         //contenedor de la receta
-        const recetasUsuario = document.createElement("div");
+        const recetasUsuario = document.createElement("a");
         recetasUsuario.classList.add("recetas_agregadas");
+        recetasUsuario.href = 'receta.html';
         //Imagen de la receta
         const imgReceta = document.createElement("img");
         imgReceta.src = imagenURL;
@@ -242,3 +263,6 @@ anadirReceta.addEventListener("click", (event) => {
     );
   }
 });
+
+
+
