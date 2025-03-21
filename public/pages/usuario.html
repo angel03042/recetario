@@ -39,13 +39,13 @@
                 <div class="perfil">
                     <button @click="category = 'usuario'" class="usuario_perfil">
                         <img src="/public/img/Female Avatar (1).gif" alt="">
-                        <p id="name_user"></p>
+                        <p class="name_user" id="name_user"></p>
                     </button>
                     <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
                 </div>
                 <div class="search">
                     <img src="/public/img/search.png" alt="">
-                    <input type="text" name="text" placeholder="Buscar">
+                    <input id="filterBusqueda" type="text" name="text" placeholder="Buscar">
                 </div>
                 <div class="notification">
                     <details class="mensaje_container">
@@ -69,7 +69,6 @@
                     </details>
                     <button class="salir" id="cerrar_salirSesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
                 </div>
-                <img src="/public/img/log-out.png" alt="">
             </div>
             <article class="contenedor">
                 <div x-data="{ info: 'apps' }" class="container_info">
@@ -154,7 +153,7 @@
                     <img src="/public/img/search.png" alt="">
                     <input type="text" name="text" placeholder="Buscar">
                 </div>
-                <button class="cerrar_salirSesion salir"><img src="/public/img/log-out (1).png" alt="">Salir</button>
+                <button class="salir"><img src="/public/img/log-out (1).png" alt="">Salir</button>
                 <img class="cerrar_salirSesion" src="/public/img/log-out.png" alt="">
             </div>
             <h1></h1>
@@ -229,7 +228,7 @@
                 <div class="perfil">
                     <button>
                         <img src="/public/img/Female Avatar (1).gif" alt="">
-                        <p>Angel B</p>
+                        <p class="name_user" id="name_user"></p>
                     </button>
                     <img src="img_usuario/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
                 </div>
@@ -240,7 +239,6 @@
                 <div class="notification">
                     <button class="salir" id="cerrar_sesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
                 </div>
-                <img src="/public/img/log-out.png" alt="">
             </div>
             <div class="perfil_usuario">
                 <div class="receta_editar">

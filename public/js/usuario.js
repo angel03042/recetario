@@ -5,7 +5,9 @@ document.querySelector(".usuario_editar").value = usuario;
 document.querySelector(".password_editar").value = password;
 
 // Mostrar nombre de usuario en la pagina principal
-document.querySelector("#name_user").innerHTML = usuario;
+let nameUser = document.querySelectorAll(".name_user").forEach(name => {
+  name.textContent = usuario;
+})
 // Mensaje al actualizar datos usuario
 const alertActualizarDatos = document.querySelector("#alert");
 const alertEditarCampos = document.querySelector("#alert2");
@@ -88,7 +90,7 @@ const inputImagen = document.querySelector("#input_imagen");
 
 //Button para cerrar sesion
 
-const buttonCerrarSesion = document.querySelectorAll("#cerrar_salirSesion");
+const buttonCerrarSesion = document.querySelectorAll(".salir");
 //confirmar
 const cerrarSesion = document.querySelector(".cerrar_sesion");
 //Button (salir o mantener)
@@ -170,19 +172,58 @@ subMenuCategoria.querySelectorAll("li").forEach((categoria) => {
 
 //Agregar receta al recetario
 
-anadirReceta.addEventListener("click", () => {
+// Función para mostrar recetas almacenadas
+function mostrarRecetas() {
+  const containerRecetas = document.querySelector(".container_recetas");
+  
+  // Recuperar recetas del localStorage
+  let recetas = JSON.parse(localStorage.getItem('recetas')) || [];
 
-  // Inputs de recetas
+  // Limpiar el contenedor antes de agregar las recetas
+  containerRecetas.innerHTML = "";
+
+  // Recorrer las recetas y agregarlas al contenedor
+  recetas.forEach((receta) => {
+    const recetasUsuario = document.createElement("a");
+    recetasUsuario.classList.add("recetas_agregadas");
+    recetasUsuario.href = "receta.html";
+
+    const imgReceta = document.createElement("img");
+    imgReceta.src = receta.imagen;
+
+    const informacionReceta = document.createElement("div");
+    const titulo = document.createElement("p");
+    titulo.classList.add("title_receta");
+    titulo.textContent = receta.nombre;
+
+    const descripcion = document.createElement("p");
+    descripcion.classList.add("description_receta");
+    descripcion.textContent = receta.descripcion;
+
+    // Agregar al DOM
+    recetasUsuario.appendChild(imgReceta);
+    recetasUsuario.appendChild(informacionReceta);
+    informacionReceta.appendChild(titulo);
+    informacionReceta.appendChild(descripcion);
+    containerRecetas.appendChild(recetasUsuario);
+
+    // Agregar evento click para guardar la receta seleccionada
+    recetasUsuario.addEventListener('click',()=>{
+      localStorage.setItem('recetaSeleccionada', JSON.stringify(receta));
+    });
+  });
+}
+
+// Llamar a la función mostrarRecetas cuando la página se cargue
+window.addEventListener('load', mostrarRecetas);
+
+anadirReceta.addEventListener("click", () => {
   const nombreReceta = document.querySelector("#nombre_receta");
   const descripcionReceta = document.querySelector("#descripcion_receta");
   const instruccionesReceta = document.querySelector("#instrucciones_receta");
   const ingredientesReceta = document.querySelector("#ingrediente_receta");
-
-  // Botón y contenedor de confirmación
   const recetaAgregadaButton = document.querySelector("#receta_exitosa");
-  const containerRecetaAgregado = document.querySelector(
-    "#container_agregado_receta"
-  );
+  const containerRecetaAgregado = document.querySelector("#container_agregado_receta");
   const verificarCamposReceta = document.querySelector("#verificar_campos");
   const verificarDescripcion = document.querySelector("#Descripcion_letras");
 
@@ -208,61 +249,46 @@ anadirReceta.addEventListener("click", () => {
       () => {
         containerRecetaAgregado.style.display = "none";
 
-        //contenedor de todas las recetas
-        const containerRecetas = document.querySelector(".container_recetas");
-        //contenedor de la receta
-        const recetasUsuario = document.createElement("a");
-        recetasUsuario.classList.add("recetas_agregadas");
-        recetasUsuario.href = 'receta.html';
-        //Imagen de la receta
-        const imgReceta = document.createElement("img");
-        imgReceta.src = imagenURL;
-        //contenedor del texto de la receta
-        const informacionReceta = document.createElement("div");
-        //Titulo de la receta
-        const titulo = document.createElement("p");
-        titulo.classList.add("title_receta");
+        const receta = {
+          nombre: nombreReceta.value,
+          descripcion: descripcionReceta.value,
+          imagen: imagenURL || "public/img/default.jpg", // Imagen por defecto
+          categoria: recetaCategoria.value,
+          ingredientes: ingredientesReceta.value,
+          instrucciones: instruccionesReceta.value,
+        };
 
-        titulo.textContent = nombreReceta.value;
-        //Descripcion de la receta
-        const descripcion = document.createElement("p");
-        descripcion.classList.add("description_receta");
+        let recetas = JSON.parse(localStorage.getItem('recetas')) || [];
 
-        descripcion.textContent = descripcionReceta.value;
-        //Agregar informacion al contenedor padre
-        recetasUsuario.appendChild(imgReceta);
-        recetasUsuario.appendChild(informacionReceta);
-        informacionReceta.appendChild(titulo);
-        informacionReceta.appendChild(descripcion);
-        containerRecetas.appendChild(recetasUsuario);
+        if (!Array.isArray(recetas)) {
+          recetas = [];
+        }
 
-        //Anadir recetas a su respectiva categoria
-        let categorias = [
-          "Postres",
-          "Bebidas",
-          "Entradas y Aperitivos",
-          "Sopas y Cremas",
-          "Ensaladas",
-          "Salsa y Aderezos",
-          "Platos Fuertes",
-          "Guarniciones",
-        ];
+        recetas.push(receta);
+        localStorage.setItem("recetas", JSON.stringify(recetas));
+
+        console.log("Receta guardada:", receta);
+        console.log("Todas las recetas:", recetas);
 
         // Limpiar los campos
         imagenCargada.style.border = "";
-        imagenCargada.innerHTML = ""; // Limpiar la vista previa de la imagen
-        imagenURL = ""; // Resetear la imagen guardada
+        imagenCargada.innerHTML = "";
+        imagenURL = "";
         nombreReceta.value = "";
         recetaCategoria.value = "";
         descripcionReceta.value = "";
         instruccionesReceta.value = "";
         ingredientesReceta.value = "";
-        inputImagen.value = ""; // Limpiar el input file
+        inputImagen.value = "";
+
+        // Volver a cargar las recetas
+        mostrarRecetas();
       },
       { once: true }
     );
   }
 });
+
 
 
 
