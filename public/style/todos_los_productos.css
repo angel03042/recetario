@@ -1,16 +1,27 @@
 /* Todos los Productos */
-
-section {
+main {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
-    height: calc(100vh - 20px); /* Altura total menos los márgenes */
+    gap: 10px;
+}
+
+.section_container {
+    position: absolute;
+    height: calc(100vh - 80px); /* Altura total menos los márgenes */
     overflow: auto; /* Scroll dentro del section */
-    padding: 20px 50px;
+    padding: 0 30px;
     background: #f3eefc;
     border-radius: 20px;
     position: relative;
     box-shadow: 0 0 5px #ba9df1; /*diseño 2*/
+}
+
+/* Este diseno solo se muestra cuando este en el apartado de recetas */
+.recetas_container {
+    height: calc(100vh - 20px);
 }
 
 section::-webkit-scrollbar {
@@ -87,7 +98,7 @@ section::-webkit-scrollbar {
 
 .container_info {
     border-radius: 20px;
-    margin: 40px 0;
+    margin: 20px 0;
     padding: 0 50px;
     background: #9d75eb;
 }

@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <title>Recetapp</title>
 </head>
-<body x-data="{ category: 'entrada' }">
+<body x-data="$store.estado">
  
     <!-- Navegacion -->
     <header id="navegacion" class="header_usuario">
@@ -32,261 +32,239 @@
             <img @click="category = 'usuario'" class="cerrarSesion usuario_perfil" src="/public/img/user-round.png" alt="">
         </div>
     </nav>
-    <section>
-        <!--Todos los Productos -->
-        <article x-show="category === 'entrada'" id="todos_los_productos" class="container_todas_las_recetas">
-            <div class="navegacion">
-                <div class="perfil">
-                    <button @click="category = 'usuario'" class="usuario_perfil">
-                        <img src="/public/img/Female Avatar (1).gif" alt="">
-                        <p class="name_user" id="name_user"></p>
-                    </button>
-                    <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
-                </div>
-                <div class="search">
-                    <img src="/public/img/search.png" alt="">
-                    <input id="filterBusqueda" type="text" name="text" placeholder="Buscar">
-                </div>
-                <div class="notification">
-                    <details class="mensaje_container">
-                        <summary><img class="notifi" src="/public/img/notification.gif" alt=""></summary>
-                        <div class="conatainer_mensaje">
-                            <div>
-                                <img src="/public/img/hand-coins.svg" alt="">
-                                <div class="noti_descripcion">
-                                    <p class="title_noti">New update</p>
-                                    <p class="mensaje">Actualizacion seguridad de la app wed</p>
-                                </div>  
-                            </div>
-                            <div>
-                                <img src="/public/img/book-check.svg" alt="">
-                                <div class="noti_descripcion">
-                                    <p class="title_noti">New Interfas</p>
-                                    <p class="mensaje">Mejoro los colores de la interfaz</p>
-                                </div>  
-                            </div>
+    <main>
+        <div class="navegacion" x-show="category !== 'agregar_receta' && category !== 'categoria'">
+            <div class="perfil">
+                <button @click="category = 'usuario'" class="usuario_perfil">
+                    <img src="/public/img/Female Avatar (1).gif" alt="">
+                    <p class="name_user" id="name_user"></p>
+                </button>
+                <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
+            </div>
+            <div class="search">
+                <img src="/public/img/search.png" alt="">
+                <input id="filterBusqueda" type="text" name="text" placeholder="Buscar">
+            </div>
+            <div class="notification">
+                <details class="mensaje_container">
+                    <summary><img class="notifi" src="/public/img/notification.gif" alt=""></summary>
+                    <div class="conatainer_mensaje">
+                        <div>
+                            <img src="/public/img/hand-coins.svg" alt="">
+                            <div class="noti_descripcion">
+                                <p class="title_noti">New update</p>
+                                <p class="mensaje">Actualizacion seguridad de la app wed</p>
+                            </div>  
                         </div>
-                    </details>
-                    <button class="salir" id="cerrar_salirSesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
+                        <div>
+                            <img src="/public/img/book-check.svg" alt="">
+                            <div class="noti_descripcion">
+                                <p class="title_noti">New Interfas</p>
+                                <p class="mensaje">Mejoro los colores de la interfaz</p>
+                            </div>  
+                        </div>
+                    </div>
+                </details>
+                <button class="salir" id="cerrar_salirSesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
+            </div>
+        </div>
+        <!-- Cerrar sesion -->
+        <div class="cerrar_sesion">
+            <div>
+                <p>Confirmar</p>
+                <img src="/public/img/MaterialSymbolsLightTapas.png" alt="">
+                <div class="button_cerrar_sesion">
+                    <button id="salir" class="btn1">Salir</button>
+                    <button id="mantener" class="btn2">Mantener</button>
                 </div>
             </div>
-            <article class="contenedor">
-                <div x-data="{ info: 'apps' }" class="container_info">
-                    <article x-show="info === 'apps'" class="descripcion">
-                        <div class="informacion">
-                            <h1>Recetas Populares</h1>
-                            <p>Los mejores sabores están aquí para deleitar tus sentidos. Nuestra "Apps" ofrece una gran variedad de funciones para almacenar sus recetas de una manera segura y confiable.</p>
-                            <div class="apps_informacion">
-                                <a href="/public/pages/app.html" target="_blank"><button class="apps_btn1">Apps</button></a>
-                                <a href="desarrolladores.html" target="_blank"><button class="more_btn2">Desarrolladores</button></a>
+        </div>
+        <section  class="section_container" 
+        :class="{ 'recetas_container': category === 'agregar_receta' || category === 'categoria' }">
+            <!--Todos los Productos -->
+            <article x-show="category === 'entrada'" id="todos_los_productos" class="container_todas_las_recetas">
+                <article class="contenedor">
+                    <div x-data="{ info: 'apps' }" class="container_info">
+                        <article x-show="info === 'apps'" class="descripcion">
+                            <div class="informacion">
+                                <h1>Recetas Populares</h1>
+                                <p>Los mejores sabores están aquí para deleitar tus sentidos. Nuestra "Apps" ofrece una gran variedad de funciones para almacenar sus recetas de una manera segura y confiable.</p>
+                                <div class="apps_informacion">
+                                    <a href="/public/pages/app.html" target="_blank"><button class="apps_btn1">Apps</button></a>
+                                    <a href="desarrolladores.html" target="_blank"><button class="more_btn2">Desarrolladores</button></a>
+                                </div>
                             </div>
-                        </div>
-                        <img src="/public/img/chef2.png" alt="">
-                    </article>
-                </div>
-                <!-- Recetas -->
-                <div class="container_recetas">
-                    
-                </div>
-                <!-- Cerrar sesion -->
-                <div class="cerrar_sesion">
-                    <div>
-                        <p>Confirmar</p>
-                        <img src="/public/img/MaterialSymbolsLightTapas.png" alt="">
-                        <div class="button_cerrar_sesion">
-                            <button id="salir" class="btn1">Salir</button>
-                            <button id="mantener" class="btn2">Mantener</button>
-                        </div>
+                            <img src="/public/img/chef2.png" alt="">
+                        </article>
+                    </div>
+                    <!-- Recetas -->
+                    <div class="container_recetas">
+                        
+                    </div>
+                </article>
+            </article>
+            <!-- Categorias (recetas) -->
+            <article x-show="category === 'categoria'" id="categorias" class="categorias">
+                <h1>Recetas<br>Categorias</h1>
+                <div class="tipos_categorias">
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Postres')" class="postres">
+                        <img src="/public/img/categorias/cake-slice.png" alt="">
+                        <p>Postres</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Bebidas')" class="bebidas">
+                        <img src="/public/img/categorias/wine.png" alt="">
+                        <p>Bebidas</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Entradas y Aperitivos')" class="aperitivos">
+                        <img src="/public/img/categorias/utensils.png" alt="">
+                        <p>Entradas y <br>Aperitivos</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Sopas y cremas')" class="sopas">
+                        <img src="/public/img/categorias/soup.png" alt="">
+                        <p>Sopas y <br>cremas</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Ensaladas')" class="ensaladas">
+                        <img src="/public/img/categorias/salad.png" alt="">
+                        <p>Ensaladas</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Salsa y Aderezos')" class="salsa">
+                        <img src="/public/img/categorias/cooking-pot.png" alt="">
+                        <p>Salsa y <br>Aderezos</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Platos Fuertes')" class="platos_fuertes">
+                        <img src="/public/img/categorias/ham.png" alt="">
+                        <p>Platos Fuertes</p>
+                    </div>
+                    <div @click="category = 'cargarRecetas'; cargarRecetasPorCategoria('Guarniciones')" class="guarniciones">
+                        <img src="/public/img/categorias/hand-platter.png" alt="">
+                        <p>Guarniciones</p>
                     </div>
                 </div>
             </article>
-        </article>
-        <!-- Categorias (recetas) -->
-        <article x-show="category === 'categoria'" id="categorias" class="categorias">
-            <h1>Recetas<br>Categorias</h1>
-            <div class="tipos_categorias">
-                <div @click="category = 'cargarRecetas'" class="postres">
-                    <img src="/public/img/categorias/cake-slice.png" alt="">
-                    <p>Postres</p>
+            <!-- Filtar recetas por categorias -->
+            <article x-show="category === 'cargarRecetas'" id="cargarRecetas" class="container_todas_las_recetas">
+                <h1></h1>
+                <!-- Recetas -->
+                <div id="cargarCategoria" class="container_recetas">
+                    
                 </div>
-                <div @click="category = 'cargarRecetas'" class="bebidas">
-                    <img src="/public/img/categorias/wine.png" alt="">
-                    <p>Bebidas</p>
+            </article>
+            <!-- Añadir recetas -->
+            <article x-show="category === 'agregar_receta'" id="anadirRecetas" class="anadir_recetas">
+                <div class="anadir_button">
+                    <h1>Receta</h1>
+                    <button id="anadir_receta" class="btn2">Añadir<img class="btn_img" src="/public/img/Submited.gif" alt=""></button>
                 </div>
-                <div @click="category = 'cargarRecetas'" class="aperitivos">
-                    <img src="/public/img/categorias/utensils.png" alt="">
-                    <p>Entradas y <br>Aperitivos</p>
-                </div>
-                <div @click="category = 'cargarRecetas'" class="sopas">
-                    <img src="/public/img/categorias/soup.png" alt="">
-                    <p>Sopas y <br>cremas</p>
-                </div>
-                <div @click="category = 'cargarRecetas'" class="ensaladas">
-                    <img src="/public/img/categorias/salad.png" alt="">
-                    <p>Ensaladas</p>
-                </div>
-                <div @click="category = 'cargarRecetas'" class="salsa">
-                    <img src="/public/img/categorias/cooking-pot.png" alt="">
-                    <p>Salsa y <br>Aderezos</p>
-                </div>
-                <div @click="category = 'cargarRecetas'" class="platos_fuertes">
-                    <img src="/public/img/categorias/ham.png" alt="">
-                    <p>Platos Fuertes</p>
-                </div>
-                <div @click="category = 'cargarRecetas'" class="guarniciones">
-                    <img src="/public/img/categorias/hand-platter.png" alt="">
-                    <p>Guarniciones</p>
-                </div>
-            </div>
-        </article>
-        <!-- Filtar recetas por categorias -->
-        <article x-show="category === 'cargarRecetas'" id="cargarRecetas" class="container_todas_las_recetas">
-            <div class="navegacion">
-                <div class="perfil">
-                    <button @click="category = 'usuario'" class="usuario_perfil">
-                        <img src="/public/img/user-circle.svg" alt="">
-                        <p>Angel B</p>
-                    </button>
-                    <img src="/public/img/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
-                </div>
-                <div class="search">
-                    <img src="/public/img/search.png" alt="">
-                    <input type="text" name="text" placeholder="Buscar">
-                </div>
-                <button class="salir"><img src="/public/img/log-out (1).png" alt="">Salir</button>
-                <img class="cerrar_salirSesion" src="/public/img/log-out.png" alt="">
-            </div>
-            <h1></h1>
-            <!-- Recetas -->
-            <div id="cargarCategoria" class="container_recetas">
-                
-            </div>
-        </article>
-        <!-- Añadir recetas -->
-        <article x-show="category === 'agregar_receta'" id="anadirRecetas" class="anadir_recetas">
-            <div class="anadir_button">
-                <h1>Receta</h1>
-                <button id="anadir_receta" class="btn2">Añadir<img class="btn_img" src="/public/img/Submited.gif" alt=""></button>
-            </div>
-            <p id="verificar_campos" style="color: red; display: none;">Rellene los campos</p>
-            <p id="receta_existente" style="color: green; display: none;">La receta ya existe</p>
-            <div class="agregar_recetas">
-                <div>
-                    <div id="img_cargada" class="cargar_img">
-                        <p>No se eligio ningun archivo !</p>
+                <p id="verificar_campos" style="color: red; display: none;">Rellene los campos</p>
+                <p id="receta_existente" style="color: green; display: none;">La receta ya existe</p>
+                <div class="agregar_recetas">
+                    <div>
+                        <div id="img_cargada" class="cargar_img">
+                            <p>No se eligio ningun archivo !</p>
+                        </div>
+                        <div class="button_img">
+                            <input type="file" id="input_imagen" style="display: none;">
+                            <button id="cargar_img" class="subir_img" type="">Cargar img<img src="/public/img/upload.svg" alt=""></button>
+                        </div>
                     </div>
-                    <div class="button_img">
-                        <input type="file" id="input_imagen" style="display: none;">
-                        <button id="cargar_img" class="subir_img" type="">Cargar img<img src="/public/img/upload.svg" alt=""></button>
+                    <div>
+                        <div class="input_receta_title">
+                            <p>Nombre de la Receta</p>
+                            <input id="nombre_receta" type="text" id="text">
+                        </div>
+                        <div class="input_receta_categoria">
+                            <p>Categoria</p>
+                            <input id="receta_categoria" type="text" readonly>
+                            <div class="sub_menu_categorias" style="display: none;">
+                                <li class="li1">Postres</li>
+                                <li>Bebidas</li>
+                                <li>Entradas y Aperitivos</li>
+                                <li>Sopas y Cremas</li>
+                                <li>Ensaladas</li>
+                                <li>Salsa y Aderezos</li>
+                                <li>Platos Fuertes</li>
+                                <li class="li2">Guarniciones</li>
+                            </div>
+                        </div>
+                        <div class="input_descripcion">
+                            <p>Descripcion</p>
+                            <textarea id="descripcion_receta" name="" id="" rows="5" placeholder="Minimo 30 caracteres."></textarea>
+                            <p id="Descripcion_letras" style="color: rgb(255, 0, 0); display: none;">Maximo 100 caracteres</p>
+                        </div>
                     </div>
                     <div class="input_ingredientes">
                         <p>Ingredientes</p>
-                        <textarea id="ingrediente_receta" name="" id="" rows="12"></textarea>
-                    </div>
-                </div>
-                <div>
-                    <div class="input_receta_title">
-                        <p>Nombre de la Receta</p>
-                        <input id="nombre_receta" type="text" id="text">
-                    </div>
-                    <div class="input_receta_categoria">
-                        <p>Categoria</p>
-                        <input id="receta_categoria" type="text" readonly>
-                        <div class="sub_menu_categorias" style="display: none;">
-                            <li class="li1">Postres</li>
-                            <li>Bebidas</li>
-                            <li>Entradas y Aperitivos</li>
-                            <li>Sopas y Cremas</li>
-                            <li>Ensaladas</li>
-                            <li>Salsa y Aderezos</li>
-                            <li>Platos Fuertes</li>
-                            <li class="li2">Guarniciones</li>
-                        </div>
-                    </div>
-                    <div class="input_descripcion">
-                        <p>Descripcion</p>
-                        <textarea id="descripcion_receta" name="" id="" rows="5" placeholder="Minimo 30 caracteres."></textarea>
-                        <p id="Descripcion_letras" style="color: rgb(255, 0, 0); display: none;">Maximo 100 caracteres</p>
+                        <textarea id="ingrediente_receta" name="" id="" rows="10"></textarea>
                     </div>
                     <div class="input_instrucciones">
                         <p>Instrucciones</p>
-                        <textarea id="instrucciones_receta" name="" id="" rows="12"></textarea>
+                        <textarea id="instrucciones_receta" name="" id="" rows="10"></textarea>
                     </div>
                 </div>
-            </div>
-            <div id="container_agregado_receta" class="verificacion">
-                <div class="file_verificados">
-                    <img src="/public/img/PrimeVerified.png" alt="">
-                    <p>Anadido Exitosamente</p>
-                    <button id="receta_exitosa">Aceptar</button>
+                <div id="container_agregado_receta" class="verificacion">
+                    <div class="file_verificados">
+                        <img src="/public/img/PrimeVerified.png" alt="">
+                        <p>Anadido Exitosamente</p>
+                        <button id="receta_exitosa">Aceptar</button>
+                    </div>
                 </div>
-            </div>
-        </article>
-        <!-- USUARIO -->
-        <article x-show="category === 'usuario'" id="perfilUsuario" class="pag_usuario">
-            <div class="navegacion">
-                <div class="perfil">
-                    <button>
-                        <img src="/public/img/Female Avatar (1).gif" alt="">
-                        <p class="name_user" id="name_user"></p>
-                    </button>
-                    <img src="img_usuario/un logo color negro sin las letras y fondo blanco para un restaurante.png" alt="">
-                </div>
-                <div class="search">
-                    <img src="/public/img/search.png" alt="">
-                    <input type="text" name="text" placeholder="Buscar">
-                </div>
-                <div class="notification">
-                    <button class="salir" id="cerrar_sesion"><img src="/public/img/log-out (1).png" alt="">Salir</button>
-                </div>
-            </div>
-            <div class="perfil_usuario">
-                <div class="receta_editar">
-                    <img src="/public/img/Learn More.gif" alt="">
-                    <p class="editar_receta">Editar (Receta)</p>
-                </div>
-                <div class="datos_usuario">
-                    <div class="datos_informacion">
-                        <div>
-                            <p>Tus Datos</p>
-                            <div class="datos_input">
-                                <div>
-                                    <label for="">Usuario</label>
-                                    <input class="usuario_editar" type="text" readonly>
-                                </div>
-                                <div>
-                                    <label for="">Password</label>
-                                    <div class="password">
-                                        <input id="passwordEditar" class="password_editar" type="password" readonly>
-                                        <img id="ocultar" src="/public/img/eye-closed.png" alt="">
-                                        <img id="mostrar" src="/public/img/eye.png" alt="" style="display: none;">
+            </article>
+            <!-- USUARIO -->
+            <article x-show="category === 'usuario'" id="perfilUsuario" class="pag_usuario">
+                <div class="perfil_usuario">
+                    <div @click="category = 'editarRecetas'; editarRecetas()" class="receta_editar">
+                        <img src="/public/img/Learn More.gif" alt="">
+                        <p class="editar_receta">Editar (Receta)</p>
+                    </div>
+                    <div class="datos_usuario">
+                        <div class="datos_informacion">
+                            <div>
+                                <p>Tus Datos</p>
+                                <div class="datos_input">
+                                    <div>
+                                        <label for="">Usuario</label>
+                                        <input class="usuario_editar" type="text" readonly>
+                                    </div>
+                                    <div>
+                                        <label for="">Password</label>
+                                        <div class="password">
+                                            <input id="passwordEditar" class="password_editar" type="password" readonly>
+                                            <img id="ocultar" src="/public/img/eye-closed.png" alt="">
+                                            <img id="mostrar" src="/public/img/eye.png" alt="" style="display: none;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <p id="alert2" class="alert2">Editar los campos, antes de actulizar los datos</p>
+                            <p id="alert" class="alert" >En un momento, inicie sesion con su usuario nuevo</p>
+                            <div class="datos_button">
+                                <button id="actualizar_datos" class="btn1">Actualizar datos</button>
+                                <button id="delete_cuenta" class="btn2">Borrar cuenta</button>
+                                <img id="editar_datos" class="editar" src="/public/img/square-pen.png" alt="">
+                            </div>
                         </div>
-                        <p id="alert2" class="alert2">Editar los campos, antes de actulizar los datos</p>
-                        <p id="alert" class="alert" >En un momento, inicie sesion con su usuario nuevo</p>
-                        <div class="datos_button">
-                            <button id="actualizar_datos" class="btn1">Actualizar datos</button>
-                            <button id="delete_cuenta" class="btn2">Borrar cuenta</button>
-                            <img id="editar_datos" class="editar" src="/public/img/square-pen.png" alt="">
+                        <img src="/public/img/Register.gif" alt="">
+                    </div>
+                    <div class="reporte_error">
+                        <div class="reporte_contacto">
+                            <p class="reportar_bug">Reportar (Error o Problemas)</p>
+                            <p>Has tenido algun problema con nuestra app, contactanos y pronto lo resolveremos.</p>
+                            <form action="https://formspree.io/f/xldjdoyw" method="POST">
+                                <textarea name="message" id="" rows="12" required></textarea>
+                                <button type="submit"><img class="btn_enviar" src="/public/img/Paper Plane.gif" alt=""></button>
+                            </form>
                         </div>
+                        <img src="/public/img/error.png" alt="">
                     </div>
-                    <img src="/public/img/Register.gif" alt="">
                 </div>
-                <div class="reporte_error">
-                    <div class="reporte_contacto">
-                        <p class="reportar_bug">Reportar (Error o Problemas)</p>
-                        <p>Has tenido algun problema con nuestra app, contactanos y pronto lo resolveremos.</p>
-                        <form action="https://formspree.io/f/xldjdoyw" method="POST">
-                            <textarea name="message" id="" rows="12" required></textarea>
-                            <button type="submit"><img class="btn_enviar" src="/public/img/Paper Plane.gif" alt=""></button>
-                        </form>
-                    </div>
-                    <img src="/public/img/error.png" alt="">
+             </article>
+             <!-- Editar Recetas -->
+             <article x-show="category === 'editarRecetas'">
+                <div id="editarRecetas" class="container_recetas">
+
                 </div>
-            </div>
-         </article>
-    </section>
+             </article>
+        </section>
+    </main>
 </body>
 </html>

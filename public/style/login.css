@@ -59,7 +59,7 @@ body > div > img {
     font-weight: bold;
 }
 
-section {
+.section_container {
     height: calc(100vh - 150px);
     display: flex;
     flex-direction: column;

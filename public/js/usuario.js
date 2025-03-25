@@ -1,3 +1,9 @@
+document.addEventListener("alpine:init", () => {
+  Alpine.store("estado", {
+    category: "entrada", // Estado inicial
+  });
+});
+
 const usuario = localStorage.getItem("usuario");
 const password = localStorage.getItem("password");
 
@@ -288,6 +294,92 @@ anadirReceta.addEventListener("click", () => {
     );
   }
 });
+
+
+//Funcion para mostrar las recetas en sus categorias
+function cargarRecetasPorCategoria(categoria){
+  const recetasContainer = document.getElementById("cargarCategoria");
+  recetasContainer.innerHTML = "";
+
+  const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+  const recetasFiltradas = recetas.filter(receta => receta.categoria === categoria);
+
+  console.log(recetas)
+
+  if(recetasFiltradas.length === 0) {
+    recetasContainer.innerHTML = "<p>No hay recetas disponibles para esta categoria.</p>";
+    return;
+  }
+
+  recetasFiltradas.forEach(receta => {
+    const recetasUsuario = document.createElement("a");
+    recetasUsuario.classList.add("recetas_agregadas");
+    recetasUsuario.href = "receta.html";
+
+    const imgReceta = document.createElement("img");
+    imgReceta.src = receta.imagen;
+
+    const informacionReceta = document.createElement("div");
+    const titulo = document.createElement("p");
+    titulo.classList.add("title_receta");
+    titulo.textContent = receta.nombre;
+
+    const descripcion = document.createElement("p");
+    descripcion.classList.add("description_receta");
+    descripcion.textContent = receta.descripcion;
+
+  // Agregar al DOM
+  recetasUsuario.appendChild(imgReceta);
+  recetasUsuario.appendChild(informacionReceta);
+  informacionReceta.appendChild(titulo);
+  informacionReceta.appendChild(descripcion);
+  recetasContainer.appendChild(recetasUsuario);
+
+  // Agregar evento click para guardar la receta seleccionada
+  recetasUsuario.addEventListener('click',()=>{
+    localStorage.setItem('recetaSeleccionada', JSON.stringify(receta));
+  });
+  })
+}
+
+function editarRecetas(){
+  const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+  console.log(recetas)
+
+  let containerEditarRecetas = document.querySelector("#editarRecetas");
+
+  containerEditarRecetas.innerHTML = "";
+
+  recetas.forEach(receta => {
+    const recetasUsuario = document.createElement("a");
+    recetasUsuario.classList.add("recetas_agregadas");
+
+    const imgReceta = document.createElement("img");
+    imgReceta.src = receta.imagen;
+
+    const informacionReceta = document.createElement("div");
+    const titulo = document.createElement("p");
+    titulo.classList.add("title_receta");
+    titulo.textContent = receta.nombre;
+
+    const descripcion = document.createElement("p");
+    descripcion.classList.add("description_receta");
+    descripcion.textContent = receta.descripcion;
+
+    // Agregar al DOM
+    recetasUsuario.appendChild(imgReceta);
+    recetasUsuario.appendChild(informacionReceta);
+    informacionReceta.appendChild(titulo);
+    informacionReceta.appendChild(descripcion);
+    containerEditarRecetas.appendChild(recetasUsuario);
+
+    recetasUsuario.addEventListener('click', ()=>{
+      localStorage.setItem('recetaEdit', JSON.stringify(receta));
+      Alpine.store("estado").category = "agregar_receta";
+    })
+  })
+}
+
 
 
 

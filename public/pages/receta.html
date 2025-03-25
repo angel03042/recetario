@@ -9,8 +9,12 @@
     <title>Document</title>
 </head>
 <body>
-    <section>
-        <a href="/public/pages/usuario.html"><button>Volver</button></a>
+    <!-- Contenedor de la informacion de la receta -->
+    <section id="section">
+        <div class="buttons">
+            <a href="/public/pages/usuario.html"><butto class="btn1">Volver</butto></a>
+            <button id="buttonDeleteReceta" class="btn2">Eliminar</button>
+        </div>
         <article>
             <img id="imagen" alt="">
             <div>
@@ -23,5 +27,15 @@
             </div>
         </article>
     </section>
+    <!-- Contenedor para confirmar el delete de la receta -->
+    <div class="mostrar" id="confirmarDeleteReceta">
+        <div class="delete_receta">
+            <h2>Confirmar</h2>
+            <div>
+                <button id="deleteReceta" class="btnConfirmar">Aceptar</button>
+                <button id="cancelarDelete" class="btnCancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
