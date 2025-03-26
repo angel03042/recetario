@@ -36,7 +36,7 @@ document.querySelector(".btn1").addEventListener("click", (event) => {
     ) {
       localStorage.setItem("usuario", usuario);
       localStorage.setItem("password", password);
-      window.location.href = "public/pages/usuario.html";
+      window.location.href = "/public/pages/usuario.html";
     } else {
       verificacion.style.display = "none";
       verificacion_incorrectos.style.display = "block";
