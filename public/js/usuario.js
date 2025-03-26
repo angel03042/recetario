@@ -11,9 +11,9 @@ document.querySelector(".usuario_editar").value = usuario;
 document.querySelector(".password_editar").value = password;
 
 // Mostrar nombre de usuario en la pagina principal
-let nameUser = document.querySelectorAll(".name_user").forEach(name => {
+let nameUser = document.querySelectorAll(".name_user").forEach((name) => {
   name.textContent = usuario;
-})
+});
 // Mensaje al actualizar datos usuario
 const alertActualizarDatos = document.querySelector("#alert");
 const alertEditarCampos = document.querySelector("#alert2");
@@ -57,7 +57,7 @@ buttonActualizarDatos.addEventListener("click", () => {
 
     setTimeout(() => {
       alertActualizarDatos.style.display = "none";
-      window.location.href = '/index.html';
+      window.location.href = "/index.html";
     }, 5000);
 
     usuario_editar.setAttribute("readonly", "");
@@ -68,18 +68,19 @@ buttonActualizarDatos.addEventListener("click", () => {
 });
 
 // Event para borrar cuenta y informacion del usuario
-buttonDeleteDatos.addEventListener('click',()=> {
-  const confirmaciónDatos = confirm('Estas seguro de que deseas borrar los datos?')
-  
-  if(confirmaciónDatos){
+buttonDeleteDatos.addEventListener("click", () => {
+  const confirmaciónDatos = confirm(
+    "Estas seguro de que deseas borrar los datos?"
+  );
+
+  if (confirmaciónDatos) {
     localStorage.clear();
-    alert('Cache borrada con exito')
-    window.location.href = '/index.html'
-  }else{
-    alert('Operacion cancelada');
+    alert("Cache borrada con exito");
+    window.location.href = "/index.html";
+  } else {
+    alert("Operacion cancelada");
   }
- 
-})
+});
 
 //Button para navegar en la pagina (menu)
 const buttonCargarImagen = document.querySelector("#cargar_img");
@@ -130,7 +131,6 @@ mostrarPassword.addEventListener("click", () => {
   passwordOculto.type = "password";
 });
 
-
 //Subir img de la receta
 
 buttonCargarImagen.addEventListener("click", () => {
@@ -143,7 +143,7 @@ inputImagen.addEventListener("change", (event) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       imagenURL = e.target.result; // Guarda la imagen en la variable global
-      
+
       // Verificar si ya hay una imagen cargada y reemplazarla en lugar de agregar otra
       if (imagenCargada.querySelector("img")) {
         imagenCargada.querySelector("img").src = imagenURL;
@@ -152,7 +152,6 @@ inputImagen.addEventListener("change", (event) => {
         imgElement.src = imagenURL;
         imagenCargada.innerHTML = ""; // Asegurar que no haya imágenes previas
         imagenCargada.appendChild(imgElement);
-        
       }
 
       imagenCargada.style.border = "none";
@@ -176,14 +175,17 @@ subMenuCategoria.querySelectorAll("li").forEach((categoria) => {
   });
 });
 
+let containerBtn1 = document.querySelector('.containerBtn1');
+let containerBtn2 = document.querySelector('.containerBtn2');
+
 //Agregar receta al recetario
 
 // Función para mostrar recetas almacenadas
 function mostrarRecetas() {
   const containerRecetas = document.querySelector(".container_recetas");
-  
+
   // Recuperar recetas del localStorage
-  let recetas = JSON.parse(localStorage.getItem('recetas')) || [];
+  let recetas = JSON.parse(localStorage.getItem("recetas")) || [];
 
   // Limpiar el contenedor antes de agregar las recetas
   containerRecetas.innerHTML = "";
@@ -214,14 +216,14 @@ function mostrarRecetas() {
     containerRecetas.appendChild(recetasUsuario);
 
     // Agregar evento click para guardar la receta seleccionada
-    recetasUsuario.addEventListener('click',()=>{
-      localStorage.setItem('recetaSeleccionada', JSON.stringify(receta));
+    recetasUsuario.addEventListener("click", () => {
+      localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
     });
   });
 }
 
 // Llamar a la función mostrarRecetas cuando la página se cargue
-window.addEventListener('load', mostrarRecetas);
+window.addEventListener("load", mostrarRecetas);
 
 anadirReceta.addEventListener("click", () => {
   const nombreReceta = document.querySelector("#nombre_receta");
@@ -229,7 +231,9 @@ anadirReceta.addEventListener("click", () => {
   const instruccionesReceta = document.querySelector("#instrucciones_receta");
   const ingredientesReceta = document.querySelector("#ingrediente_receta");
   const recetaAgregadaButton = document.querySelector("#receta_exitosa");
-  const containerRecetaAgregado = document.querySelector("#container_agregado_receta");
+  const containerRecetaAgregado = document.querySelector(
+    "#container_agregado_receta"
+  );
   const verificarCamposReceta = document.querySelector("#verificar_campos");
   const verificarDescripcion = document.querySelector("#Descripcion_letras");
 
@@ -264,7 +268,7 @@ anadirReceta.addEventListener("click", () => {
           instrucciones: instruccionesReceta.value,
         };
 
-        let recetas = JSON.parse(localStorage.getItem('recetas')) || [];
+        let recetas = JSON.parse(localStorage.getItem("recetas")) || [];
 
         if (!Array.isArray(recetas)) {
           recetas = [];
@@ -295,23 +299,25 @@ anadirReceta.addEventListener("click", () => {
   }
 });
 
-
 //Funcion para mostrar las recetas en sus categorias
-function cargarRecetasPorCategoria(categoria){
+function cargarRecetasPorCategoria(categoria) {
   const recetasContainer = document.getElementById("cargarCategoria");
   recetasContainer.innerHTML = "";
 
   const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
-  const recetasFiltradas = recetas.filter(receta => receta.categoria === categoria);
+  const recetasFiltradas = recetas.filter(
+    (receta) => receta.categoria === categoria
+  );
 
-  console.log(recetas)
+  console.log(recetas);
 
-  if(recetasFiltradas.length === 0) {
-    recetasContainer.innerHTML = "<p>No hay recetas disponibles para esta categoria.</p>";
+  if (recetasFiltradas.length === 0) {
+    recetasContainer.innerHTML =
+      "<p>No hay recetas disponibles para esta categoria.</p>";
     return;
   }
 
-  recetasFiltradas.forEach(receta => {
+  recetasFiltradas.forEach((receta) => {
     const recetasUsuario = document.createElement("a");
     recetasUsuario.classList.add("recetas_agregadas");
     recetasUsuario.href = "receta.html";
@@ -328,29 +334,29 @@ function cargarRecetasPorCategoria(categoria){
     descripcion.classList.add("description_receta");
     descripcion.textContent = receta.descripcion;
 
-  // Agregar al DOM
-  recetasUsuario.appendChild(imgReceta);
-  recetasUsuario.appendChild(informacionReceta);
-  informacionReceta.appendChild(titulo);
-  informacionReceta.appendChild(descripcion);
-  recetasContainer.appendChild(recetasUsuario);
+    // Agregar al DOM
+    recetasUsuario.appendChild(imgReceta);
+    recetasUsuario.appendChild(informacionReceta);
+    informacionReceta.appendChild(titulo);
+    informacionReceta.appendChild(descripcion);
+    recetasContainer.appendChild(recetasUsuario);
 
-  // Agregar evento click para guardar la receta seleccionada
-  recetasUsuario.addEventListener('click',()=>{
-    localStorage.setItem('recetaSeleccionada', JSON.stringify(receta));
+    // Agregar evento click para guardar la receta seleccionada
+    recetasUsuario.addEventListener("click", () => {
+      localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
+    });
   });
-  })
 }
 
-function editarRecetas(){
+function editarRecetas() {
   const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
-  console.log(recetas)
+  console.log(recetas);
 
   let containerEditarRecetas = document.querySelector("#editarRecetas");
 
   containerEditarRecetas.innerHTML = "";
 
-  recetas.forEach(receta => {
+  recetas.forEach((receta) => {
     const recetasUsuario = document.createElement("a");
     recetasUsuario.classList.add("recetas_agregadas");
 
@@ -373,14 +379,80 @@ function editarRecetas(){
     informacionReceta.appendChild(descripcion);
     containerEditarRecetas.appendChild(recetasUsuario);
 
-    recetasUsuario.addEventListener('click', ()=>{
-      localStorage.setItem('recetaEdit', JSON.stringify(receta));
+    recetasUsuario.addEventListener("click", () => {
+      localStorage.setItem("recetaEdit", JSON.stringify(receta));
       Alpine.store("estado").category = "agregar_receta";
-    })
-  })
+      camposReceta();
+    });
+  });
 }
 
+let modoEdicion = false;
 
+function camposReceta() {
+  const recetaEdit = JSON.parse(localStorage.getItem("recetaEdit"));
 
+  if (recetaEdit) {
+    modoEdicion = true;
+    document.querySelector("#nombre_receta").value = recetaEdit.nombre;
+    document.querySelector("#descripcion_receta").value = recetaEdit.descripcion;
+    document.querySelector("#ingrediente_receta").value = recetaEdit.ingredientes;
+    document.querySelector("#instrucciones_receta").value = recetaEdit.instrucciones;
+    document.querySelector("#receta_categoria").value = recetaEdit.categoria;
+    document.querySelector("#img_cargada").innerHTML = `<img src="${recetaEdit.imagen}" alt="Imagen de receta">`;
+    document.querySelector("#anadir_receta").textContent = "Actualizar Receta";
+
+  } else {
+    modoEdicion = false;
+    document.querySelector("#anadir_receta").textContent = "Añadir Receta";
+  }
+
+  // Manejo de Imagen
+  const inputImagen = document.querySelector("#input_imagen");
+  let imagenURL = recetaEdit ? recetaEdit.imagen : "";
+
+  inputImagen.addEventListener("change", function () {
+    const file = inputImagen.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imagenURL = e.target.result;
+        document.querySelector("#img_cargada").innerHTML = `<img src="${imagenURL}" alt="Nueva Imagen de Receta">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Manejo de Agregar o Actualizar
+  document.querySelector("#anadir_receta").onclick = function () {
+    const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+
+    const nuevaReceta = {
+      nombre: document.querySelector("#nombre_receta").value,
+      descripcion: document.querySelector("#descripcion_receta").value,
+      ingredientes: document.querySelector("#ingrediente_receta").value,
+      instrucciones: document.querySelector("#instrucciones_receta").value,
+      categoria: document.querySelector("#receta_categoria").value,
+      imagen: imagenURL || "default.jpg", // Si no hay imagen, usa una por defecto
+    };
+
+    if (modoEdicion) {
+      // Actualizar receta existente
+      const index = recetas.findIndex((r) => r.nombre === recetaEdit.nombre);
+      if (index !== -1) {
+        recetas[index] = nuevaReceta;
+      }
+    } else {
+      // Agregar nueva receta
+      recetas.push(nuevaReceta);
+      alert("Receta agregada con éxito.");
+    }
+
+    // Guardar y reiniciar
+    localStorage.setItem("recetas", JSON.stringify(recetas));
+    localStorage.removeItem("recetaEdit"); // Eliminar receta en edición
+    window.location.reload(); // Refrescar para limpiar formulario
+  };
+}
 
 

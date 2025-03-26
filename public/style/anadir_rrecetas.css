@@ -1,9 +1,3 @@
-/* anadir recetas */
-
-/* .anadir_recetas {
-    display: none;
-} */
-
 .anadir_button {
     display: flex;
     justify-content: space-between;
@@ -14,11 +8,6 @@
 .anadir_button > h1 {
     font-size: clamp(2rem, 3vw, 3rem);;
     margin: 0;
-}
-
-.anadir_button > div {
-    display: flex;
-    gap: 10px;
 }
 
 .btn_img {

@@ -9,7 +9,6 @@ main {
 }
 
 .section_container {
-    position: absolute;
     height: calc(100vh - 80px); /* Altura total menos los márgenes */
     overflow: auto; /* Scroll dentro del section */
     padding: 0 30px;
