@@ -81,7 +81,7 @@ summary {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
-    margin-top: 50px;
+    padding: 30px 10px;
     gap: 20px;
 }
 

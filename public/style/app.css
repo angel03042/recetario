@@ -15,7 +15,7 @@ nav {
 
 h1 {
     margin: 0;
-    font-size: 4vw;
+    font-size: clamp(0.5rem, 4vw, 2.5rem);
 }
 
 span {
@@ -28,8 +28,7 @@ nav > p {
 
 .container_card {
     width: 100%;
-    height: calc(100vh - 200px);
-    margin-top: 50px;
+    margin: 60px 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: max-content;
@@ -117,4 +116,40 @@ li {
 
 .text3 {
     grid-column: 2/3;
+}
+
+@media (max-width: 768px){
+    body{
+        margin: 20px;
+    }
+    nav > p {
+        font-size: 5px;
+    }
+    .container_card {
+        width: 100%;
+        margin: 60px 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: max-content;
+        gap: 50px;
+    }
+    .container_2 > img{
+        display: none;
+    }
+    .container_text_seccion {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 3%;
+    }    
+    .text1 {
+        padding: 0 20px;
+        grid-row: auto;
+    }
+    li{
+        font-size: 3vw;
+    }
+    .text3 {
+        grid-column: auto;
+    }
 }

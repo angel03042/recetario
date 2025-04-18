@@ -60,9 +60,30 @@ body {
         justify-content: space-around;
         align-items: center;
     }
+    .container_info {
+        padding: 0 20px;
+    }
+    .apps_btn1 {
+        font-size: 3vw;
+    }
+    .more_btn2 {
+        font-size: 3vw;
+    }
     .container_recetas {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+        margin-bottom: 20vh;
+    }
+    .container_recetas > a {
+        display: grid;
+        grid-template-rows: 100px auto;
+        gap: 10px;
+    }
+    .container_recetas > a > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     .recetas_agregadas{
         display: flex;
@@ -71,14 +92,22 @@ body {
     .recetas_agregadas > img {
         width: 100%;
     }
-
+    .search > input {
+        width: 200px;
+        border: 2px black solid;
+    }
     /* section de todas las recetas */
+    main{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
     .section_container {
         border-radius: 0;
         margin: 0;
         background: transparent;
         box-shadow: 0 0 10px transparent; 
-        padding: 10px;
+        padding: 15px;
     }
     .mensaje_container {
         display: none;
@@ -143,7 +172,7 @@ body {
         margin: 10px;
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 100px;
+        margin-bottom: 20vh;
     }
 
     .tipos_categorias > div {
@@ -152,6 +181,11 @@ body {
 
 
     /* AGREGAR RECETAS */
+
+    .anadir_button {
+        padding-top: 0;
+        margin-top: 0;
+    }
 
     .anadir_button > div > div > .btn1,
     .anadir_button > div > .btn2 {
@@ -163,16 +197,34 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .input_instrucciones {
+        margin-bottom: 35vh;
+    }
+
     /* USUARIO */
 
+    
     .perfil_usuario {
+        grid-template-rows: auto auto;
+        padding: 10px 10px;
         gap: 10px;
+    }
+
+    .editar_receta {
+        font-size: 5vw;
     }
 
     .reporte_error > img {
         display: none;
     }
-
+    .usuario_editar, .password_editar {
+        width: 150px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        padding: 0 5px;
+        font-size: 15px;
+    }
     .descripcion_information {
         display: none;
     }
@@ -181,20 +233,40 @@ body {
         grid-template-columns: 1fr;
     }
     .datos_usuario {
-        padding: 10px;
+        display: flex;
+        padding: 15px;
+        grid-column: auto;
+    }
+    .reporte_error {
+        padding: 10px 20px;
+        grid-column: auto;
+        margin-bottom: 20vh;
+    }
+    .reportar_bug {
+        font-size: 5vw;
+        color: white;
+        font-weight: bold;
+        margin: 0;
     }
     .datos_usuario > img {
         display: none;
     }
     .datos_input {
         display: flex;
-        flex-direction: column;
-        gap: 30px;
+        gap: 10px;
     }
     .datos_button {
         display: flex;
-        flex-direction: column;
         gap: 20px;
+    }
+    .datos_informacion {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+    .datos_informacion > p {
+        font-size: 3.5vw;
     }
 }
 

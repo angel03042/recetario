@@ -113,3 +113,50 @@ img {
 .btnCancelar {
     background: #54009e;
 }
+
+@media (max-width: 1023px){
+    section {
+        margin: 20px;
+        position: relative;
+    }
+    .btn1 {
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        background: black;
+        cursor: pointer;
+    }
+    
+    .btn2 {
+        padding: 8px 15px;
+        border-radius: 10px;
+        color: white;
+        background: red;
+        cursor: pointer;
+    }
+    article {
+        display: grid;
+        margin-top: 20px;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    .instrucciones {
+        grid-column: auto;
+    }
+    h1 {
+        font-size: 6vw;
+        margin: 0;
+        color: #814de5;
+    }
+    
+    h2 {
+        font-size: 6vw;
+        margin: 0;
+        color: white;
+    }
+    
+    p {
+        font-size: 4vw;
+    }
+}
