@@ -1,3 +1,4 @@
+/* RESET Y CONFIGURACIÓN */
 * {
     box-sizing: border-box;
 }
@@ -12,6 +13,7 @@ body {
     overflow: hidden;
 }
 
+/* ANIMACIONES IMÁGENES */
 body > div {
     display: flex;
     align-items: center;
@@ -29,37 +31,46 @@ body > div > img {
     animation: imagenes 12s infinite ease;
 }
 
-.img1 { animation-delay: 0s; }
-.img2 { animation-delay: 4s; }
-.img3 { animation-delay: 8s; }
+.imagen-uno { animation-delay: 0s; }
+.imagen-dos { animation-delay: 4s; }
+.imagen-tres { animation-delay: 8s; }
 
 @keyframes imagenes {
     0%, 33%, 100% {
         transform: translateX(100px);
         opacity: 0;
     }
-    10%, 30%{
+    10%, 30% {
         transform: translateX(0px);
         opacity: 1;
     }
 }
 
-.logo {
+/* LOGOS Y CABECERA */
+.logo-principal {
     display: flex;
     align-items: center;
 }
 
-.logo > img {
+.logo-principal > img {
     width: 15%;
 }
 
-.logo > p {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.logo-principal > p {
     font-size: 20px;
     font-weight: bold;
 }
 
-.section_container {
+.logo-universidad {
+    text-align: center;
+}
+
+.logo-universidad > img {
+    width: 50%;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor-seccion {
     height: calc(100vh - 150px);
     display: flex;
     flex-direction: column;
@@ -68,49 +79,70 @@ body > div > img {
     gap: 20px;
 }
 
-.input_datos > div {
+/* ENTRADAS DATOS */
+.grupo-entradas > div {
     display: flex;
     flex-direction: column;
     border: solid 1px black;
     padding: 5px;
-    &:hover {
-        border-left: 3px solid red;
-    }
 }
 
-.input_datos > div > label {
+.grupo-entradas > div:hover {
+    border-left: 3px solid red;
+}
+
+.grupo-entradas > div > label {
     font-weight: bold;
 }
 
-.input_datos > div > input {
+.grupo-entradas > div > input {
     border: none;
     height: 40px;
     font-size: 18px;
 }
 
-.input_datos > div > input:focus {
+.grupo-entradas > div > input:focus {
     outline: none;
 }
 
-
-.logo_uni  {
-    text-align: center;
+/* MENSAJES Y ALERTAS */
+.mensaje-verificacion {
+    display: none;
+    color: red;
+    font-weight: 600;
 }
 
-.recordar_datos {
+.mensaje-validacion {
+    color: rgb(255, 0, 76);
+    font-weight: 600;
+}
+
+.datos-validados {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+}
+
+/* RECORDAR CUENTA */
+.recordar-datos {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.buttons {
+/* BOTONES */
+.grupo-botones {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.buttons > p > a{
+.grupo-botones > p > a {
     text-decoration: none;
+}
+
+.grupo-botones-aceptar {
+    text-align: center;
 }
 
 button {
@@ -122,44 +154,17 @@ button {
     font-weight: bold;
 }
 
-.btn1 {
+.btn-primario {
     background-color: black;
     color: white;
 }
 
-.btn2 {
+.btn-secundario {
     background: white;
     border: 2px solid black;
 }
 
-
-.logo_uni > img {
-    width: 50%;
-}
-
-.verificaciones {
-    display: none;
-    color: red;
-    font-weight: 600;
-}
-
-/* Datos enviados */
-
-.p_validacion {
-    color: rgb(255, 0, 76);
-    font-weight: 600;
-}
-
-.datos_validados {
-    text-align: center;
-    color: green;
-    font-weight: bold;
-}
-
-.buttons_aceptar {
-    text-align: center;
-}
-
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     body {
         display: grid;

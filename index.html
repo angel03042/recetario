@@ -10,89 +10,92 @@
 </head>
 <body x-data="$store.estado">
     <main>
-        <div class="logo">
+        <div class="logo-principal">
             <img src="public/img/logo_restaurante.ico" alt="">
-            <p>Recetapp</p>
+            <p>Recetapp <span style="font-weight: 600; font-size: 15px;">(Demo)</span></p>
         </div>
-        <section class="section_container">
-            <div class="logo_uni">
+        <section class="contenedor-seccion">
+            <div class="logo-universidad">
                 <img src="public/img/logoUNI.jpg" alt="">
-                <p x-show="button === 'login'">Bienvenido, por favor inicie sesion en su cuenta</p>
+                <p x-show="button === 'login'">Bienvenido, por favor inicie sesión en su cuenta</p>
                 <p x-show="button === 'registrarse'">Por favor crea una cuenta nueva</p>
-                <p x-show="button === 'datos_verificacion'" class="p_validacion">Datos recibidos exisotosamente</p>
+                <p x-show="button === 'datos_verificacion'" class="mensaje-validacion">Datos recibidos exitosamente</p>
             </div>
+
+            <!-- Iniciar sesión -->
             <section x-show="button === 'login'">
-                <div class="input_datos">
+                <div class="grupo-entradas">
                     <div>
-                        <label id="labels" for="usuario">Usuario</label>
+                        <label class="etiqueta" for="usuario">Usuario</label>
                         <input type="text" id="usuario">
                     </div>
                     <div>
-                        <label id="labels" for="password">Password</label>
+                        <label class="etiqueta" for="password">Contraseña</label>
                         <input type="password" id="password">
                     </div>
-                    <p class="verificaciones" id="verificacionId">Ingrese sus Datos</p>
-                    <p class="verificaciones" id="incorrectosId">Verifique sus Datos</p>
+                    <p class="mensaje-verificacion" id="verificacionId">Ingrese sus Datos</p>
+                    <p class="mensaje-verificacion" id="incorrectosId">Verifique sus Datos</p>
                 </div>
-                <div class="recordar_datos">
+                <div class="recordar-datos">
                     <input id="recordar" type="checkbox">
                     <p>Recordar</p>
                 </div>
-                <div class="buttons">
-                    <button class="btn1">Iniciar sesion</button>
-                    <button @click="button = 'registrarse'" class="btn2">Registrarse</button>
+                <div class="grupo-botones">
+                    <button class="btn-primario">Iniciar sesión</button>
+                    <button @click="button = 'registrarse'" class="btn-secundario">Registrarse</button>
                 </div>
             </section>
-            <!-- Registrase -->
+
+            <!-- Registrarse -->
             <section x-show="button === 'registrarse'" id="registroUsuario">
-                <!-- 📌 Agregamos el <form> sin afectar la estructura -->
                 <form id="formRegistro">
-                    <div class="input_datos">
+                    <div class="grupo-entradas">
                         <div>
-                            <label id="labels_registro" for="usuario">Usuario</label>
-                            <input class="inputsClear" type="text" id="usuario_registro">
+                            <label class="etiqueta-registro" for="usuario">Usuario</label>
+                            <input class="entrada-limpia" type="text" id="usuario_registro">
                         </div>
                         <div>
-                            <label id="labels_registro" for="usuario">Correo Electrónico</label>
-                            <input class="inputsClear" type="email" id="correo">
+                            <label class="etiqueta-registro" for="correo">Correo Electrónico</label>
+                            <input class="entrada-limpia" type="email" id="correo">
                         </div>
                         <div>
-                            <label id="labels_registro" for="password">Password</label>
-                            <input class="inputsClear" type="password" id="password_registro">
+                            <label class="etiqueta-registro" for="password">Contraseña</label>
+                            <input class="entrada-limpia" type="password" id="password_registro">
                         </div>
                         <div>
-                            <label id="labels_registro" for="password">Confirmar Password</label>
-                            <input class="inputsClear" type="password" id="confirmar_password_registro">
+                            <label class="etiqueta-registro" for="confirmar_password">Confirmar Contraseña</label>
+                            <input class="entrada-limpia" type="password" id="confirmar_password_registro">
                         </div>
-            
-                        <p class="verificaciones" id="alertUsuario">Usuario debe ser mayor a 8 dígitos</p>
-                        <p class="verificaciones" id="alertEmail">Verifique su correo</p>
-                        <p class="verificaciones" id="alertPassword">La contraseña debe ser mayor a 6 dígitos</p>
-                        <p class="verificaciones" id="alertPasswordConfirmar">Las contraseñas no coinciden</p>
+
+                        <p class="mensaje-verificacion" id="alertUsuario">El usuario debe tener más de 8 caracteres</p>
+                        <p class="mensaje-verificacion" id="alertEmail">Verifique su correo</p>
+                        <p class="mensaje-verificacion" id="alertPassword">La contraseña debe tener más de 6 caracteres</p>
+                        <p class="mensaje-verificacion" id="alertPasswordConfirmar">Las contraseñas no coinciden</p>
                     </div>
-            
-                    <div class="buttons">
-                        <button type="submit" class="btn1" id="registrar">Registrarse</button>
+
+                    <div class="grupo-botones">
+                        <button type="submit" class="btn-primario" id="registrar">Registrarse</button>
                         <p>¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p>
                     </div>
                 </form>
-            </section>        
-            <!-- Datos enviado -->
+            </section>
+
+            <!-- Datos enviados -->
             <section x-show="button === 'datos_verificacion'" id="datosEnviados">
-                <div class="datos_validados">
+                <div class="datos-validados">
                     <img src="public/img/Hire.gif" alt="">
-                    <p>Se notificara a su correo, cuando sus datos se han validados.</p>
+                    <p>Se notificará a su correo cuando sus datos hayan sido validados.</p>
                 </div>
-                <div class="buttons_aceptar">
-                    <button @click="button = 'login'" class="btn1">Aceptar</button>
+                <div class="grupo-botones-aceptar">
+                    <button @click="button = 'login'" class="btn-primario">Aceptar</button>
                 </div>
             </section>
-        </main>
         </section>
+    </main>
     <div>   
-        <img class="img1" src="public/img/imagen_chef.png" alt="">
-        <img class="img2" src="public/img/chef3.png" alt="">
-        <img class="img3" src="public/img/chet4.png" alt="">
+        <img class="imagen-uno" src="public/img/imagen_chef.png" alt="">
+        <img class="imagen-dos" src="public/img/chef3.png" alt="">
+        <img class="imagen-tres" src="public/img/chet4.png" alt="">
     </div>
     <script src="public/js/login.js"></script>
     <script src="public/js/registro.js"></script>

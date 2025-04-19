@@ -70,6 +70,10 @@ Aquí algunos diagramas y algoritmos previos al desarrollo del proyecto.
 
 ![Vista previa de RecetApp](/docs/Algoritmo_gastronomia_registro.png)
 
+*Diagrama futaras actualizaciones "Base de datos"*
+
+![Vista previa de Recetapp](/docs/diagrama(datos).png)
+
 ## Diseño 
 
 Primera versión del diseño de la app web en Figma.
