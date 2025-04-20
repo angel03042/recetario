@@ -5,7 +5,7 @@ document.addEventListener("alpine:init", () => {
 });
 
 const buttonRegistrar = document.querySelector("#registrar");
-const clearInputs = document.querySelectorAll(".inputsClear");
+const clearInputs = document.querySelectorAll(".entrada-limpia");
 
 buttonRegistrar.addEventListener("click", (event) => {
   event.preventDefault();
@@ -19,19 +19,15 @@ buttonRegistrar.addEventListener("click", (event) => {
   const usuarioRegistro = document.querySelector("#usuario_registro").value;
   const email = document.querySelector("#correo").value;
   const passwordRegistro = document.querySelector("#password_registro").value;
-  const confirmarPassword = document.querySelector(
-    "#confirmar_password_registro"
-  ).value;
+  const confirmarPassword = document.querySelector("#confirmar_password_registro").value;
 
   const alertUsuario = document.querySelector("#alertUsuario");
   const alertEmail = document.querySelector("#alertEmail");
   const alertPassword = document.querySelector("#alertPassword");
-  const alertPasswordConfirmar = document.querySelector(
-    "#alertPasswordConfirmar"
-  );
+  const alertPasswordConfirmar = document.querySelector("#alertPasswordConfirmar");
 
-  const pagesRegistro = document.querySelector("#registroUsuario");
-  const pagesDatosEnviados = document.querySelector("#datosEnviados");
+  // const pagesRegistro = document.querySelector("#registroUsuario");
+  // const pagesDatosEnviados = document.querySelector("#datosEnviados");
 
   let labelRegistro = document.querySelectorAll("#labels_registro");
 

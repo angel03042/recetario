@@ -1,4 +1,4 @@
-document.querySelector(".btn1").addEventListener("click", (event) => {
+document.querySelector(".btn-primario").addEventListener("click", (event) => {
   event.preventDefault();
   //Registro
   const usuarioRegistro = localStorage.getItem("registroUsuario");

@@ -165,13 +165,24 @@ button {
 }
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     body {
-        display: grid;
         grid-template-columns: 1fr;
     }
 
     body > div {
         display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+    body > div {
+        display: none;
+    }
+    .contenedor-seccion {
+        margin: 0 15vw;
     }
 }
