@@ -41,6 +41,7 @@ section::-webkit-scrollbar {
 
 .perfil > button {
     display: flex;
+    align-items: center;
     gap: 10px;
     border-radius: 30px;
     background-image: linear-gradient(to bottom, rgb(145, 0, 145), rgb(81, 2, 150));
@@ -107,8 +108,16 @@ section::-webkit-scrollbar {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.descripcion > img {
+.containerImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerImg > img {
     width: 100%;
+    max-width: 400PX;
+    min-width: 200PX;
     animation: imagen 2s ease-in;
 }
 

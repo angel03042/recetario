@@ -1,9 +1,11 @@
 document.querySelector(".btn-primario").addEventListener("click", (event) => {
   event.preventDefault();
-  //Registro
+
+  // Registro original
   const usuarioRegistro = localStorage.getItem("registroUsuario");
   const passwordRegistro = localStorage.getItem("registroPassword");
-  //Datos Actualizados del usuario
+
+  // Datos actualizados del usuario
   const usuarioUpload = localStorage.getItem("usuarioUpload");
   const passwordUpload = localStorage.getItem("passwordUpload");
 
@@ -15,31 +17,42 @@ document.querySelector(".btn-primario").addEventListener("click", (event) => {
   const usuario = document.querySelector("#usuario").value;
   const password = document.querySelector("#password").value;
 
-  let verificacion = document.querySelector("#verificacionId");
-  let verificacion_incorrectos = document.querySelector("#incorrectosId");
+  const verificacion = document.querySelector("#verificacionId");
+  const verificacionIncorrectos = document.querySelector("#incorrectosId");
+  const labels = document.querySelectorAll(".etiqueta");
 
-  let labels = document.querySelectorAll("#labels");
-
+  // Validación: campos vacíos
   if (usuario === "" && password === "") {
-    labels.forEach((labelsInput) => {
-      labelsInput.style.color = "red";
+    labels.forEach(label => {
+      label.style.color = "red";
     });
     verificacion.style.display = "block";
-  } else {
-    if (usuario === usuarioRegistro && password === passwordRegistro) {
-      localStorage.setItem("usuario", usuario);
-      localStorage.setItem("password", password);
-      window.location.href = "public/pages/usuario.html";
-    } else if (
-      usuario === datosUsuario.usuario &&
-      password === datosUsuario.password
-    ) {
-      localStorage.setItem("usuario", usuario);
-      localStorage.setItem("password", password);
-      window.location.href = "/public/pages/usuario.html";
-    } else {
-      verificacion.style.display = "none";
-      verificacion_incorrectos.style.display = "block";
-    }
+    verificacionIncorrectos.style.display = "none";
+    return;
   }
+
+  // Restablecer estilos si hay datos
+  labels.forEach(label => {
+    label.style.color = "";
+  });
+  verificacion.style.display = "none";
+
+  // Validación: datos registrados
+  if (usuario === usuarioRegistro && password === passwordRegistro) {
+    localStorage.setItem("usuario", usuario);
+    localStorage.setItem("password", password);
+    window.location.href = "public/pages/usuario.html";
+    return;
+  }
+
+  // Validación: datos actualizados
+  if (usuario === datosUsuario.usuario && password === datosUsuario.password) {
+    localStorage.setItem("usuario", usuario);
+    localStorage.setItem("password", password);
+    window.location.href = "/public/pages/usuario.html";
+    return;
+  }
+
+  // Si ninguna validación fue correcta
+  verificacionIncorrectos.style.display = "block";
 });

@@ -6,24 +6,49 @@
     <link rel="stylesheet" href="public/style/login.css">
     <link rel="icon" type="image/png" href="public/img/logo_restaurante.ico">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>[x-cloak] { display: none !important; }</style>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init('69tuoqa0JHP54ePrl'); // << aquí pones tu public key real de EmailJS
+    })();
+    </script>
     <title>Recetapp</title>
 </head>
 <body x-data="$store.estado">
-    <main>
+
+    <!-- From Uiverse.io by Nawsome --> 
+
+    <section id="loader" class="loader">
+        <div class="slider" style="--i:0">
+        </div>
+        <div class="slider" style="--i:1">
+        </div>
+        <div class="slider" style="--i:2">
+        </div>
+        <div class="slider" style="--i:3">
+        </div>
+        <div class="slider" style="--i:4">
+        </div>
+    </section>
+
+    <main class="contenido" style="display: none;">
         <div class="logo-principal">
             <img src="public/img/logo_restaurante.ico" alt="">
             <p>Recetapp <span style="font-weight: 600; font-size: 15px;">(Demo)</span></p>
         </div>
         <section class="contenedor-seccion">
             <div class="logo-universidad">
-                <img src="public/img/logoUNI.jpg" alt="">
-                <p x-show="button === 'login'">Bienvenido, por favor inicie sesión en su cuenta</p>
-                <p x-show="button === 'registrarse'">Por favor crea una cuenta nueva</p>
-                <p x-show="button === 'datos_verificacion'" class="mensaje-validacion">Datos recibidos exitosamente</p>
+                <!-- Logo de la UNI -->
+                <img src="public/img/logoUNI.jpg" alt="Logo_UNI">
+                <p x-show="button === 'login'" x-cloak>Bienvenido, por favor inicie sesión en su cuenta</p>
+                <p x-show="button === 'registrarse'" x-cloak>Por favor crea una cuenta nueva</p>
+                <p x-show="button === 'datos_verificacion'" x-cloak class="mensaje-validacion">Datos recibidos exitosamente</p>
             </div>
 
             <!-- Iniciar sesión -->
-            <section x-show="button === 'login'">
+            <section x-show="button === 'login'" x-cloak>
                 <div class="grupo-entradas">
                     <div>
                         <label class="etiqueta" for="usuario">Usuario</label>
@@ -47,7 +72,7 @@
             </section>
 
             <!-- Registrarse -->
-            <section x-show="button === 'registrarse'" id="registroUsuario">
+            <section x-show="button === 'registrarse'" x-cloak id="registroUsuario">
                 <form id="formRegistro">
                     <div class="grupo-entradas">
                         <div>
@@ -66,8 +91,9 @@
                             <label class="etiqueta-registro" for="confirmar_password">Confirmar Contraseña</label>
                             <input class="entrada-limpia" type="password" id="confirmar_password_registro">
                         </div>
-
-                        <p class="mensaje-verificacion" id="alertUsuario">El usuario debe tener más de 8 caracteres</p>
+                        
+                        <p class="mensaje-verificacion" id="alertCaracteresUsuario">El usuario debe ser mayor o igual 6 caracteres.</p>
+                        <p class="mensaje-verificacion" id="alertUsuario">El usuario no debe tener caracteres especiales.</p>
                         <p class="mensaje-verificacion" id="alertEmail">Verifique su correo</p>
                         <p class="mensaje-verificacion" id="alertPassword">La contraseña debe tener más de 6 caracteres</p>
                         <p class="mensaje-verificacion" id="alertPasswordConfirmar">Las contraseñas no coinciden</p>
@@ -81,9 +107,9 @@
             </section>
 
             <!-- Datos enviados -->
-            <section x-show="button === 'datos_verificacion'" id="datosEnviados">
+            <section x-show="button === 'datos_verificacion'" x-cloak id="datosEnviados">
                 <div class="datos-validados">
-                    <img src="public/img/Hire.gif" alt="">
+                    <img src="public/img/Hire.gif" alt="img_verificacion_correcta">
                     <p>Se notificará a su correo cuando sus datos hayan sido validados.</p>
                 </div>
                 <div class="grupo-botones-aceptar">
@@ -92,12 +118,21 @@
             </section>
         </section>
     </main>
-    <div>   
-        <img class="imagen-uno" src="public/img/imagen_chef.png" alt="">
-        <img class="imagen-dos" src="public/img/chef3.png" alt="">
-        <img class="imagen-tres" src="public/img/chet4.png" alt="">
+    <div class="contenido">   
+        <img class="imagen-uno" src="public/img/ilustracionCHEF.svg" alt="img_ilustracion_chef">
+        <img class="imagen-dos" src="public/img/ilustracionCHEF3.svg" alt="img_ilustracion_chet_cocina">
+        <img class="imagen-tres" src="public/img/ilustracionCHEF2.svg" alt="img_ilustracion_chef_mujer">
     </div>
     <script src="public/js/login.js"></script>
     <script src="public/js/registro.js"></script>
+
+    <script>
+        window.onload = () => {
+            document.getElementById('loader').style.display = 'none';
+            document.querySelectorAll('.contenido').forEach(element => {
+                element.style.display = 'block';
+            });
+        };
+    </script>
 </body>
 </html>

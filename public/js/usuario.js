@@ -109,11 +109,21 @@ const mantener = document.querySelector("#mantener");
 buttonCerrarSesion.forEach((salirSesion) => {
   salirSesion.addEventListener("click", () => {
     cerrarSesion.style.display = "block";
+    document.querySelector("header").style.opacity = '.2';
+    document.querySelector("nav").style.opacity = '.2';
+    document.querySelector("main").style.opacity = '.2';
     salir.addEventListener("click", () => {
       window.location.href = "/index.html";
+      document.querySelector("header").style.opacity = '1';
+      document.querySelector("nav").style.opacity = '1';
+      document.querySelector("main").style.opacity = '1';
+
     });
     mantener.addEventListener("click", () => {
       cerrarSesion.style.display = "none";
+      document.querySelector("header").style.opacity = '1';
+      document.querySelector("nav").style.opacity = '1';
+      document.querySelector("main").style.opacity = '1';
     });
   });
 });
@@ -245,7 +255,7 @@ anadirReceta.addEventListener("click", () => {
     recetaCategoria.value.trim() === ""
   ) {
     verificarCamposReceta.style.display = "block";
-  } else if (descripcionReceta.value.length > 100) {
+  } else if (descripcionReceta.value.length > 200) {
     verificarDescripcion.style.display = "block";
     descripcionReceta.style.border = "2px solid red";
   } else {
@@ -262,7 +272,7 @@ anadirReceta.addEventListener("click", () => {
         const receta = {
           nombre: nombreReceta.value,
           descripcion: descripcionReceta.value,
-          imagen: imagenURL || "public/img/default.jpg", // Imagen por defecto
+          imagen: imagenURL || "https://image.benq.com/is/image/benqco/icon-image-3?$ResponsivePreset$&fmt=png-alpha", // Imagen por defecto
           categoria: recetaCategoria.value,
           ingredientes: ingredientesReceta.value,
           instrucciones: instruccionesReceta.value,
@@ -454,5 +464,60 @@ function camposReceta() {
     window.location.reload(); // Refrescar para limpiar formulario
   };
 }
+
+
+const inputBusqueda = document.getElementById("filterBusqueda");
+
+inputBusqueda.addEventListener("input", () => {
+  const termino = inputBusqueda.value.toLowerCase();
+  const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+
+  const recetasFiltradas = recetas.filter(receta =>
+    receta.nombre.toLowerCase().includes(termino)
+  );
+
+  mostrarRecetasFiltradas(recetasFiltradas);
+});
+
+//Filtrado por busqueda
+
+function mostrarRecetasFiltradas(lista) {
+  const containerRecetas = document.querySelector(".container_recetas");
+  containerRecetas.innerHTML = "";
+
+  if (lista.length === 0) {
+    containerRecetas.innerHTML = "<p>No se encontraron recetas.</p>";
+    return;
+  }
+
+  lista.forEach((receta) => {
+    const recetasUsuario = document.createElement("a");
+    recetasUsuario.classList.add("recetas_agregadas");
+    recetasUsuario.href = "receta.html";
+
+    const imgReceta = document.createElement("img");
+    imgReceta.src = receta.imagen;
+
+    const informacionReceta = document.createElement("div");
+    const titulo = document.createElement("p");
+    titulo.classList.add("title_receta");
+    titulo.textContent = receta.nombre;
+
+    const descripcion = document.createElement("p");
+    descripcion.classList.add("description_receta");
+    descripcion.textContent = receta.descripcion;
+
+    recetasUsuario.appendChild(imgReceta);
+    recetasUsuario.appendChild(informacionReceta);
+    informacionReceta.appendChild(titulo);
+    informacionReceta.appendChild(descripcion);
+    containerRecetas.appendChild(recetasUsuario);
+
+    recetasUsuario.addEventListener("click", () => {
+      localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
+    });
+  });
+}
+
 
 

@@ -42,7 +42,7 @@ El propósito de RecetApp es facilitar la consulta y gestión de recetas, pensad
 
 **Login** para verificacion de usuario antes de ingresar a la web.
 
-![Vista previa de RecetApp](/assets/logins.png)
+![Vista previa de RecetApp](/assets/login.png)
 
 - Los usuarios pueden iniciar sesión si ya tienen una cuenta.  
 - Si no tienen una cuenta, deben registrarse antes de acceder.  
@@ -50,7 +50,7 @@ El propósito de RecetApp es facilitar la consulta y gestión de recetas, pensad
 
 **Pagina Usuario** Una vez ingresado los datos sera redirigido a la pagina de usuario.
 
-![Vista previa de RecetApp](/assets/users.png)
+![Vista previa de RecetApp](/assets/user.png)
 
 Aqui podras guardar tus recetas favoritas, editarlas y eliminarlas, tambien podras actualizar tus datos como usuario y contraseña. Podras contactarnos por si la pagina tiene algun error o quieres preguntar algo en especifico.
 
@@ -82,5 +82,5 @@ Primera versión del diseño de la app web en Figma.
 
 ## Autor
 
-- Angel Francisco Benitez Ramirez
+- ???????
 - Contacto: [angelbenitezramirez0@gmail.com]

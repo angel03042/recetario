@@ -11,7 +11,7 @@ buttonRegistrar.addEventListener("click", (event) => {
   event.preventDefault();
 
   const verificacionDatos = {
-    verificaionUsuario: 8,
+    verificaionUsuario: /^[a-zA-Z0-9]{1,}$/, // Solo letras y números
     verificaionEmail: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     verificaionPassword: 6,
   };
@@ -21,16 +21,15 @@ buttonRegistrar.addEventListener("click", (event) => {
   const passwordRegistro = document.querySelector("#password_registro").value;
   const confirmarPassword = document.querySelector("#confirmar_password_registro").value;
 
+  const alertCaracteresUsuario = document.querySelector("#alertCaracteresUsuario");
   const alertUsuario = document.querySelector("#alertUsuario");
   const alertEmail = document.querySelector("#alertEmail");
   const alertPassword = document.querySelector("#alertPassword");
   const alertPasswordConfirmar = document.querySelector("#alertPasswordConfirmar");
 
-  // const pagesRegistro = document.querySelector("#registroUsuario");
-  // const pagesDatosEnviados = document.querySelector("#datosEnviados");
+  let labelRegistro = document.querySelectorAll(".etiqueta-registro");
 
-  let labelRegistro = document.querySelectorAll("#labels_registro");
-
+  // Verificar si todos los campos están vacíos
   if (
     usuarioRegistro === "" &&
     email === "" &&
@@ -40,37 +39,87 @@ buttonRegistrar.addEventListener("click", (event) => {
     labelRegistro.forEach((colors) => {
       colors.style.color = "red";
     });
-  } else {
-    labelRegistro.forEach((colors) => {
-      colors.style.color = "";
-    });
-    if (usuarioRegistro.length < verificacionDatos.verificaionUsuario) {
-      alertUsuario.style.display = "block";
-    } else {
-      alertUsuario.style.display = "none";
-      if (!verificacionDatos.verificaionEmail.test(email)) {
-        alertEmail.style.display = "block";
-      } else {
-        alertEmail.style.display = "none";
-        if (passwordRegistro.length < verificacionDatos.verificaionPassword) {
-          alertPassword.style.display = "block";
-        } else {
-          alertPassword.style.display = "none";
-          if (passwordRegistro === confirmarPassword) {
-            alertPasswordConfirmar.style.display = "none";
-            //Guardar datos del usuario
-            localStorage.setItem("registroUsuario", usuarioRegistro);
-            localStorage.setItem("registroPassword", passwordRegistro)
-            // ✅ CAMBIO AQUÍ: Usar Alpine.store()
-            clearInputs.forEach((limpiar) => {
-              limpiar.value = "";
-            });
-            Alpine.store("estado").button = "datos_verificacion";
-          } else {
-            alertPasswordConfirmar.style.display = "block";
-          }
-        }
-      }
-    }
+    return;
   }
+
+  // Restablecer colores
+  labelRegistro.forEach((colors) => {
+    colors.style.color = "";
+  });
+
+  // Validar usuario
+  if (!verificacionDatos.verificaionUsuario.test(usuarioRegistro)) {
+    // Caso: contiene caracteres especiales
+    alertUsuario.style.display = "block";
+    alertCaracteresUsuario.style.display = "none";
+    return;
+  }
+  
+  if (usuarioRegistro.length < 6) {
+    // Caso: longitud excesiva
+    console.log('hola')
+    alertUsuario.style.display = "none";
+    alertCaracteresUsuario.style.display = "block";
+    return;
+  }
+  
+  // Si llega aquí, el usuario es válido
+  alertUsuario.style.display = "none";
+  alertCaracteresUsuario.style.display = "none";
+
+  // Validar email
+  if (!verificacionDatos.verificaionEmail.test(email)) {
+    alertEmail.style.display = "block";
+    return;
+  } else {
+    alertEmail.style.display = "none";
+  }
+
+  // Validar longitud de la contraseña
+  if (passwordRegistro.length < verificacionDatos.verificaionPassword) {
+    alertPassword.style.display = "block";
+    return;
+  } else {
+    alertPassword.style.display = "none";
+  }
+
+  // Validar confirmación de contraseña
+  if (passwordRegistro !== confirmarPassword) {
+    alertPasswordConfirmar.style.display = "block";
+    return;
+  } else {
+    alertPasswordConfirmar.style.display = "none";
+  }
+
+  // Si todo es válido, guardar datos y cambiar vista
+  localStorage.setItem("registroUsuario", usuarioRegistro);
+  localStorage.setItem("registroPassword", passwordRegistro);
+
+  clearInputs.forEach((limpiar) => {
+    limpiar.value = "";
+  });
+
+  // Si todo es válido, guardar datos y cambiar vista
+  localStorage.setItem("registroUsuario", usuarioRegistro);
+  localStorage.setItem("registroPassword", passwordRegistro);
+
+  // ENVIAR CORREO CON EMAILJS
+  emailjs.send("service_8doreyk", "template_exg4xxd", {
+    usuario: usuarioRegistro,
+    correo: email,
+    contrasena: passwordRegistro,
+    to_email: email, // 👈 ¡Esto es lo que EmailJS necesita!
+  })
+  .then(function(response) {
+    console.log('Correo enviado correctamente', response.status, response.text);
+  })
+  .catch(function(error) {
+    console.error('Error al enviar el correo', error);
+  });  
+
+  clearInputs.forEach((limpiar) => {
+    limpiar.value = "";
+  });
+
+  Alpine.store("estado").button = "datos_verificacion";
 });
